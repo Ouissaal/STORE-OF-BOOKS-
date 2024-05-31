@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="books_info">
+<h1 class="AA text-center"> Books Details :</h1>
+  <h1 class="Nbook">{{ book.title }}</h1>
+  <p><strong>Author:</strong> {{ book.author }}</p>
+  <p><strong>Genre:</strong> {{ book.genre }}</p>
+  <p><strong>Price:</strong> {{ book.price }}$</p>
+  <p><strong>publication_year:</strong> {{ book.publication_year }}</p>
+</div>
+<style>
+.books_info{
+background-image: url(https://i.pinimg.com/564x/fb/77/d6/fb77d68578e3c3bcd6ecc32646499eeb.jpg)  ;
+margin: 10px;
+padding:100px;
+box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+.AA{
+color: darkred;
+text-decoration: underline;
+}
+
+</style>
+{% endblock %}

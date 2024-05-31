@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="content-header">
+  <div class="bg">
+    <div class="introduction text-center p-5 m-3">
+      <h1 class="text-dark">Book Store</h1>
+      <h2 class="text-dark ">"Don't read to finish, read to start a new journey in your mind"</h2>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    {% for book in books %}
+    <div class="col-md-4 mb-5">
+      <div class="books text-center">
+        <div class="card ">
+          <div class="card-body">
+            <h5 class="card-title">{{ book.title }}</h5>
+            <h6 class="card-title text-dark">Author: {{ book.author.name }}</h6>
+            <p class="card-title text-dark">Price: ${{ book.price }}</p>
+            <a href="{% url 'book' book.id %}" class="card-link btn btn-outline-secondary">See Details</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<style>
+.card{
+box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+background-image: url(https://i.pinimg.com/564x/31/56/46/315646c66458659e56ef4f798d9bc4fd.jpg);
+font-family: Arial, Helvetica, sans-serif;
+margin: 4px;
+}
+.card-title{
+color: darkred;
+}
+.content-header{
+background-image: url(https://i.pinimg.com/564x/49/c8/39/49c8396ff6005e3731fd3830e9030dd9.jpg);
+color: red;
+}
+
+</style>
+{% endblock %}
