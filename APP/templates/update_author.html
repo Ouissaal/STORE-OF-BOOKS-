@@ -4,9 +4,7 @@
   <h1 class="text">Update the {{ author.name }}</h1>
   <form method="POST">
     {% csrf_token %}
-      <input type="text" name="name" class="form-control" value="{{ author.name }}" />
-      <input type="date" name="birth_date" class="form-control" value="{{ author.birth_date|date:'Y-m-d' }}" />
-      <input type="text" name="nationality" class="form-control" value="{{ author.nationality }}" />
+      {{ form.as_p }}
     <button class="btn btn-warning " type="submit">Done</button>
   </form>
 </div>

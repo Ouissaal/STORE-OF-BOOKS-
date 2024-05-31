@@ -4,14 +4,7 @@
   <h1 class="text">Create A book</h1>
   <form method="POST">
     {% csrf_token %}
-      <input type="text" name="title" class="form-control" placeholder="Title" />
-      <input type="text" name="genre" class="form-control"placeholder="Genre" />
-      <input type="text" name="price" class="form-control"placeholder="Price" />
-      <select name="author" class="form-control">
-    {% for author in authors %} 
-     <option value="{{ author.id}}" >{{author.name }}</option>
-    {% endfor %}
-     </select>
+     {{ form.as_p }}
     <button class="btn btn-warning " type="submit">Save</button>
   </form>
 </div>

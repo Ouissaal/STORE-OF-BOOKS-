@@ -1,18 +1,10 @@
 from django.shortcuts import render, redirect
 from .models import Author, Book
-
+from .forms import AuthorForm, BookForm
 def home(request): 
     books = Book.objects.all()
-
-    books_list = [
-        {'title': 'Book1', 'price': 100, 'publication_year': 1999},
-        {'title': 'Book2', 'price': 100, 'publication_year': 1999},
-        {'title': 'Book3', 'price': 100, 'publication_year': 1999}               
-    ]
-
     home_page_context = {
         'books': books,
-        'manual_book_list': books_list,
     }
     return render(request, 'home.html', context=home_page_context)
 
@@ -29,36 +21,32 @@ def book(request, id):
 
 
 def create_book(request):
-    authors = Author.objects.all()
     if request.method == 'POST':
-        title = request.POST.get('title')
-        genre = request.POST.get('genre')
-        price = request.POST.get('price')
-        publication_year = request.POST.get('publication_year')
-        author_id = request.POST.get('author')
-        author = Author.objects.get(id=author_id)
-        Book.objects.create(title=title, genre=genre, price=price, publication_year=publication_year, author=author)
-        return redirect('home_page')
+        # code to create a book
+        form = BookForm(request.POST)
+        if form.is_valid():
+            form.save()
+            redirect('home_page')
+    else:
+        # code to show the form
+        form = BookForm()
     context = { 
-        'authors': authors
+        'form': form,
     }
     return render(request, 'create_book.html', context=context)
 
 def update_book(request, id):
     book = Book.objects.get(id=id)
-    authors = Author.objects.all()
     if request.method == 'POST':
-        book.title = request.POST.get('title')
-        book.genre = request.POST.get('genre')
-        book.price = request.POST.get('price')
-        book.publication_year = request.POST.get('publication_year')
-        author_id = request.POST.get('author')
-        book.author = Author.objects.get(id=author_id)
-        book.save()
-        return redirect('home_page')
+        form = BookForm(request.POST, instance=book)
+        if form.is_valid():
+            form.save()
+            return redirect('home_page')
+    else:
+        form = BookForm(instance=book)
     context = { 
         'book': book,
-        'authors': authors,   
+        'form': form,
     }
     return render(request, 'update_book.html', context=context)
 
@@ -78,22 +66,27 @@ def home_author(request):
 
 def create_author(request):
     if request.method == 'POST':
-        name = request.POST.get('name')
-        birth_date = request.POST.get('birth_date')
-        nationality = request.POST.get('nationality')
-        Author.objects.create(name=name, birth_date=birth_date, nationality=nationality)
-        return redirect('home')
-    return render(request, 'create_author.html')
+        form = AuthorForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = AuthorForm()
+    context = {
+        'form': form
+    }
+    return render(request, 'create_author.html', context)
 
 def update_author(request, id):
     author = Author.objects.get(id=id)
     if request.method == 'POST':
-        author.name = request.POST.get('name')
-        author.birth_date = request.POST.get('birth_date')
-        author.nationality = request.POST.get('nationality')
-        author.save()
-        return redirect('home')
-    return render(request, 'update_author.html', {'author': author})
+        form = AuthorForm(request.POST, instance=author)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = AuthorForm(instance=author)
+    return render(request, 'update_author.html', {'author': author, 'form': form})
 
 def delete_author(request, id):
     author = Author.objects.get(id=id)
