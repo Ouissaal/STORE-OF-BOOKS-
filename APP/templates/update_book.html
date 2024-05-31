@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="create text-center m-5 p-5">
-  <h1 class="text">Create A book</h1>
+  <h1 class="text">Update the {{ book.title }}</h1>
   <form method="POST">
     {% csrf_token %}
-      <input type="text" name="title" class="form-control" placeholder="Title" />
-      <input type="text" name="genre" class="form-control"placeholder="Genre" />
-      <input type="text" name="price" class="form-control"placeholder="Price" />
+      <input type="text" name="title" class="form-control" placeholder="{{ book.title }}" />
+      <input type="text" name="genre" class="form-control"placeholder="{{ book.genre }}" />
+      <input type="text" name="price" class="form-control"placeholder="{{ book.price }}" />
       <select name="author" class="form-control">
     {% for author in authors %} 
      <option value="{{ author.id}}" >{{author.name }}</option>
@@ -18,7 +18,7 @@
 
 <style>
 .create{
-background-image:url(https://i.pinimg.com/564x/40/8f/ea/408feae36658139303cb60efd4d1eb31.jpg);
+background-image:url(https://i.pinimg.com/564x/85/f6/21/85f62159bb1b808e263b8aed33d306cd.jpg);
 }
 .text{
 font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
@@ -32,12 +32,3 @@ box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 
 </style>
 {% endblock %}
-
-
-
-
-
-
-
-
-

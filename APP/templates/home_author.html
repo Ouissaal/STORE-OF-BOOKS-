@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="content-header">
+  <div class="bg">
+    <div class="introduction text-center p-5 m-3">
+      <h1 class="text-dark">Book Store</h1>
+      <h2 class="text-dark ">"Discover acclaimed authors and their captivating stories at our store!"</h2>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    {% for author in authors %}
+    <div class="col-md-4 mb-5">
+      <div class="books text-center">
+        <div class="card ">
+          <div class="card-body">
+            <h5 class="card-title">{{ author.name }}</h5>
+            <h6 class="card-title text-dark">birth_date: {{ author.birth_date }}</h6>
+            <p class="card-title text-dark">nationality: {{ author.nationality }}</p>
+            <a href="{% url 'update_author' author.id %}" class="card-link btn btn-outline-primary">Update</a>
+            <a href="{% url 'delete_author' author.id %}" class="card-link btn btn-outline-danger">delete</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<style>
+.card{
+box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+background-image: url(https://i.pinimg.com/564x/66/48/0d/66480d90ab4849ed46aebd8e70ce4a8d.jpg);
+font-family: Arial, Helvetica, sans-serif;
+margin: 4px;
+}
+.card-title{
+color: darkred;
+text-decoration: underline darkred;
+}
+.content-header{
+background-image: url(https://i.pinimg.com/736x/bb/91/05/bb910512524250b80b1726ade26606b1.jpg);
+color: red;
+}
+
+</style>
+{% endblock %}
