@@ -4,13 +4,14 @@
   <h1 class="text">Update the {{ book.title }}</h1>
   <form method="POST">
     {% csrf_token %}
-      <input type="text" name="title" class="form-control" placeholder="{{ book.title }}" />
-      <input type="text" name="genre" class="form-control"placeholder="{{ book.genre }}" />
-      <input type="text" name="price" class="form-control"placeholder="{{ book.price }}" />
+      <input type="text" name="title" class="form-control" value="{{ book.title }}" />
+      <input type="text" name="genre" class="form-control" value="{{ book.genre }}" />
+      <input type="text" name="price" class="form-control" value="{{ book.price }}" />
       <select name="author" class="form-control">
     {% for author in authors %} 
-     <option value="{{ author.id}}" >{{author.name }}</option>
+     <option value="{{ author.id}}" {% if author.id == book.author.id %} selected {% endif %} >{{author.name }}</option>
     {% endfor %}
+    {% comment %} <option value="3" selected>Custom typing</option> {% endcomment %}
      </select>
     <button class="btn btn-warning " type="submit">Save</button>
   </form>
