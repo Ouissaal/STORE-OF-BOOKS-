@@ -8,6 +8,22 @@ def home(request):
     }
     return render(request, 'home.html', context=home_page_context)
 
+def manager_book_list(request):
+    books = Book.objects.all()
+    context = {
+        'books': books,
+        'is_manager': True,
+    }
+    return render(request, 'home.html', context=context)
+
+def user_book_list(request):
+    books = Book.objects.all()
+    context = {
+        'books': books,
+        'is_manager': False
+    }
+    return render(request, 'home.html', context=context)
+
 def about(request):
     return render(request, 'about.html')
 
