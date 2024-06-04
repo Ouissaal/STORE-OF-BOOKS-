@@ -8,11 +8,11 @@
         <div class=" collapse navbar-collapse " id="navbarNavDropdown">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item ">
-              <a class="nav-link mx-2 active" aria-current="page" href="{% url 'home_page' %}">display books</a>
+              <a class="nav-link mx-2 active" aria-current="page" href="{% url 'book_list_user' %}">display books</a>
             </li>
             
             <li class="nav-item">
-              <a class="nav-link mx-2" href="{% url 'home' %}">display author</a>
+              <a class="nav-link mx-2" href="{% url 'user_author_page' %}">display author</a>
             </li>
             
          
@@ -20,7 +20,7 @@
               <a class="nav-link mx-2" href="{% url 'about' %}">about</a>
             </li>
             
-          <ul class="navbar-nav ms-auto d-none d-lg-inline-flex">
+          <ul class="navbar-nav ms-auto d-none d-lg-inline-flex"> 
             <li class="nav-item mx-2">
               <a class="nav-link text-dark h5" href="" target="blank"><i class="fab fa-google-plus-square"></i></a>
             </li>

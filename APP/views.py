@@ -11,6 +11,22 @@ def home(request):
     }
     return render(request, 'home.html', context=home_page_context)
 
+def manager_book_list(request):
+    books = Book.objects.all()
+    context = {
+        'books': books,
+        'is_manager': True,
+    }
+    return render(request, 'home.html', context=context)
+
+def user_book_list(request):
+    books = Book.objects.all()
+    context = {
+        'books': books,
+        'is_manager': False
+    }
+    return render(request, 'home.html', context=context)
+
 def about(request):
     return render(request, 'about.html')
 
@@ -67,6 +83,17 @@ def home_author(request):
     authors = Author.objects.all()
     return render(request, 'home_author.html', {'authors': authors})
 
+
+def user_author_page(request):
+    
+    authors = Author.objects.all()
+    
+    return render(request, 'home_author.html', {'authors': authors, 'is_manager': False} )
+
+def manager_author_page(request):
+    authors = Author.objects.all()
+    return render(request, 'home_author.html', {'authors': authors, 'is_manager': True})
+   
 def create_author(request):
     if request.method == 'POST':
         form = AuthorForm(request.POST)

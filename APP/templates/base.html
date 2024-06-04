@@ -13,7 +13,11 @@
     </title>
   </head>
   <body>
-    {% include 'includes/Mnavbar.html' %}
+      {% if 'manager' in request.path%}
+        {% include 'includes/Mnavbar.html' %}
+      {% else %}
+        {% include 'includes/Cnavbar.html' %}
+      {% endif %}
     <div class="container">
       {% block content %}
 

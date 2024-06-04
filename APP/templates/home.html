@@ -20,8 +20,10 @@
             <h6 class="card-title text-dark">Author: {{ book.author.name }}</h6>
             <p class="card-title text-dark">Price: ${{ book.price }}</p>
             <a href="{% url 'book' book.id %}" class="card-link btn btn-outline-secondary">See Details</a>
-            <a href="{% url 'update_book' book.id %}" class="card-link btn btn-outline-primary">Update</a>
-            <a href="{% url 'delete_book' book.id %}" class="card-link btn btn-outline-danger">delete</a>
+            {% if is_manager %}
+              <a href="{% url 'update_book' book.id %}" class="card-link btn btn-outline-primary">Update</a>
+              <a href="{% url 'delete_book' book.id %}" class="card-link btn btn-outline-danger">delete</a>
+            {% endif %}
           </div>
         </div>
       </div>

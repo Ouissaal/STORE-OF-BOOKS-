@@ -18,8 +18,10 @@
             <h5 class="card-title">{{ author.name }}</h5>
             <h6 class="card-title text-dark">birth_date: {{ author.birth_date }}</h6>
             <p class="card-title text-dark">nationality: {{ author.nationality }}</p>
+       {% if is_manager %}
             <a href="{% url 'update_author' author.id %}" class="card-link btn btn-outline-primary">Update</a>
             <a href="{% url 'delete_author' author.id %}" class="card-link btn btn-outline-danger">delete</a>
+      {% endif%}
           </div>
         </div>
       </div>
