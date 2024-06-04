@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from .models import Author, Book, Order
 from .forms import AuthorForm, BookForm, OrderForm
+from .models import Author, Book
+from .forms import AuthorForm, BookForm
+
 def home(request): 
     books = Book.objects.all()
     home_page_context = {
@@ -86,7 +89,10 @@ def update_author(request, id):
             return redirect('home')
     else:
         form = AuthorForm(instance=author)
+
     return render(request, 'manager/update_author.html', {'author': author, 'form': form})
+    return render(request, 'update_author.html', {'author': author, 'form': form})
+
 
 def delete_author(request, id):
     author = Author.objects.get(id=id)

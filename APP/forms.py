@@ -1,5 +1,9 @@
 from django import forms
+
 from .models import Author, Book, Order
+
+from .models import Author, Book
+
 
 class AuthorForm(forms.ModelForm):
     class Meta:
@@ -25,6 +29,7 @@ class BookForm(forms.ModelForm):
             'publication_year': forms.NumberInput(attrs={'class':'form-control'}),
             'author': forms.Select(attrs={'class':'form-control'}),
             'price': forms.NumberInput(attrs={'class':'form-control'}),
+
         }
         
 class OrderForm(forms.ModelForm):
@@ -36,4 +41,4 @@ class OrderForm(forms.ModelForm):
             'order_date': forms.DateInput(attrs={'class': 'form-control'}),
             'status': forms.Select(attrs={'class': 'form-control'}),
         }
-        
+    
