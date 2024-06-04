@@ -3,12 +3,11 @@
 <div class="content-header">
   <div class="bg">
     <div class="introduction text-center p-5 m-3">
-      <h1 class="text-dark">Book Store</h1>
-      <h2 class="text-dark ">"Discover acclaimed authors and their captivating stories at our store!"</h2>
+      <h1 class="text-dark">ALL ORDERS</h1>
+      <h2 class="text-dark ">"Orders Details: Crafting Your Perfet Experience !"</h2>
     </div>
   </div>
 </div>
-
 <div class="container">
   <div class="row">
     {% for author in authors %}
@@ -16,9 +15,11 @@
       <div class="books text-center">
         <div class="card ">
           <div class="card-body">
-            <h5 class="card-title">{{ author.name }}</h5>
-            <h6 class="card-title text-dark">birth_date: {{ author.birth_date }}</h6>
-            <p class="card-title text-dark">nationality: {{ author.nationality }}</p>
+            <h5 class="card-title">{{ order.name }}</h5>
+            <h6 class="card-title text-dark">product_name: {{order.product_name }}</h6>
+            <p class="card-title text-dark">quantity: {{ order.quantity }}</p>
+            <p class="card-title text-dark"> price: {{ order. price }}</p>
+
             <a href="{% url 'update_author' author.id %}" class="card-link btn btn-outline-primary">Update</a>
             <a href="{% url 'delete_author' author.id %}" class="card-link btn btn-outline-danger">delete</a>
           </div>
