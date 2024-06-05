@@ -30,17 +30,14 @@ class BookForm(forms.ModelForm):
             'publication_year': forms.NumberInput(attrs={'class':'form-control'}),
             'author': forms.Select(attrs={'class':'form-control'}),
             'price': forms.NumberInput(attrs={'class':'form-control'}),
-            'category': forms.TextInput({'class': 'form-control'}),
-            
-
+            'category': forms.Select(attrs={'class': 'form-control'}),
         }
         
 class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
-        fields = ['customer_name', 'order_date', 'status']
+        fields = ['customer_name', 'book']
         widgets = {
             'customer_name': forms.TextInput(attrs={'class': 'form-control'}),
-            'order_date': forms.DateInput(attrs={'class': 'form-control'}),
-            'status': forms.Select(attrs={'class': 'form-control'}),
+            'book': forms.Select(attrs={'class': 'form-control'})
         }

@@ -3,6 +3,7 @@ from .models import Author, Book, Order
 from .forms import AuthorForm, BookForm, OrderForm
 from .models import Author, Book
 from .forms import AuthorForm, BookForm
+from django.core.paginator import Paginator
 
 def home(request): 
     books = Book.objects.all()
@@ -136,10 +137,14 @@ def manager_page(request):
 def customer_page(request):
     return render(request, 'customer.html')
 
+
+
 def manage_orders(request):
     if request.method == 'POST':       
         form = OrderForm(request.POST)
+
         if form.is_valid():
+            book_id = form.cleaned_data['book_id']
             form.save()
             return redirect('order_detail', order_id=order_id)
     else:
@@ -157,3 +162,30 @@ def __str__(self):
 def order_detail(request, order_id):
     order = Order.objects.get(id=order_id)
     return render(request, 'order_detail.html', {'order': order})
+
+
+def manage_order(request):
+    orders = Order.objects.all()
+
+    paginator = Paginator(orders, 4)
+
+    page_number = request.GET.get('page', 1)
+
+    page = paginator.page(page_number)
+    return render(request, 'manage_order.html', {'page': page})
+
+def order_page(request, id):
+    book = Book.objects.get(id=id)
+    if request.method == 'POST':       
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('book_list_user')
+    else:
+        form = OrderForm(initial={'book': book})
+
+    context = { 
+        'form': form,
+        'book_id': id,
+    }
+    return render(request, 'order_page.html', context=context)
