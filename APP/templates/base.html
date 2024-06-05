@@ -15,8 +15,10 @@
   <body>
       {% if 'manager' in request.path%}
         {% include 'includes/Mnavbar.html' %}
-      {% else %}
+      {% elif 'user' in request.path%}
         {% include 'includes/Cnavbar.html' %}
+      {% else %}
+        {% include 'includes/navbar.html' %}
       {% endif %}
     <div class="container">
       {% block content %}

@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Author, Book, Order
+from .models import Author, Book, Order 
 
 from .models import Author, Book
 
@@ -22,13 +22,16 @@ class BookForm(forms.ModelForm):
                   'genre', 
                   'publication_year', 
                   'author', 
-                  'price']
+                  'price',
+                  'category',]
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'genre': forms.TextInput(attrs={'class': 'form-control'}),
             'publication_year': forms.NumberInput(attrs={'class':'form-control'}),
             'author': forms.Select(attrs={'class':'form-control'}),
             'price': forms.NumberInput(attrs={'class':'form-control'}),
+            'category': forms.TextInput({'class': 'form-control'}),
+            
 
         }
         
@@ -41,4 +44,3 @@ class OrderForm(forms.ModelForm):
             'order_date': forms.DateInput(attrs={'class': 'form-control'}),
             'status': forms.Select(attrs={'class': 'form-control'}),
         }
-    

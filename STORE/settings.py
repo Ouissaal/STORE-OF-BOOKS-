@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'STORE.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'STORE',
+        'NAME': 'store',
         'USER': 'root',
         'PASSWORD': 'ouissal2005',
         'HOST': 'localhost',
