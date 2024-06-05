@@ -1,0 +1,29 @@
+# Python related
+*.pyc
+*.Pyo
+*.pyd
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Django related
+*.log
+*.pot 
+db.sqlite3
+media/
+staticfiles/
+
+# Virtual Environment
+.venv/
+venv/
+
+# Development tools
+.idea/
+.vscode/
+*.swp
+*.swo
+*.swn
+*.bak
+*.bak2
+*.bak3
+*.DS_Store

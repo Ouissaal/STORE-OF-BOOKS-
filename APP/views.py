@@ -81,22 +81,23 @@ def delete_book(request, id):
     return render(request, 'delete_book.html', context=context)
 
 def home_author(request):
-    authors = Author.objects.all()
-    paginator = Paginator(authors, 3)
-    page_number = request.GET.get('page', 1)
-    page = paginator.page(page_number)
+   
     return render(request, 'home_author.html', {'page': page, 'authors': authors})
 
 
 def user_author_page(request):
-    
     authors = Author.objects.all()
-    
-    return render(request, 'home_author.html', {'authors': authors, 'is_manager': False} )
+    paginator = Paginator(authors, 3)
+    page_number = request.GET.get('page', 1)
+    page = paginator.page(page_number)    
+    return render(request, 'home_author.html', {'page': page, 'is_manager': False} )
 
 def manager_author_page(request):
     authors = Author.objects.all()
-    return render(request, 'home_author.html', {'authors': authors, 'is_manager': True})
+    paginator = Paginator(authors, 3)
+    page_number = request.GET.get('page', 1)
+    page = paginator.page(page_number)
+    return render(request, 'home_author.html', {'page': page, 'is_manager': True})
    
 def create_author(request):
     if request.method == 'POST':
