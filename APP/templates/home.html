@@ -8,14 +8,15 @@
     </div>
   </div>
 </div>
-
+</div>
 <div class="container">
   <div class="row">
-    {% for book in books %}
-    <div class="col-md-4 mb-5">
+    {% for book in page %}
+    <div class="card col-md-4 mb-5 m-4" style="width: 24rem;">
       <div class="books text-center">
-        <div class="card ">
           <div class="card-body">
+            <img src="{{ book.image }}" alt="" class="book_image card-img-top">
+
             <h5 class="card-title">{{ book.title }}</h5>
             <h6 class="card-title text-dark">Author: {{ book.author.name }}</h6>
             <p class="card-title text-dark">Price: ${{ book.price }}</p>
@@ -31,10 +32,23 @@
           </div>
         </div>
       </div>
-    </div>
+    
     {% endfor %}
+</div>
   </div>
 </div>
+<nav aria-label="Page navigation example">
+        <ul class="pagination">
+          {% if page.has_previous %}
+          <li class="page-item"><a class="page-link" href="?page={{page.previous_page_number}}">Previous</a></li>
+          {% endif %}
+          <li class="page-item"><a href="#" class="page-link">Page {{ page.number }}</a></li>
+          {% if page.has_next %}
+          <li class="page-item"><a class="page-link" href="?page={{ page.next_page_number }}">Next</a></li>
+
+          {% endif %}
+        </ul>
+      </nav>
 <style>
 .card{
 box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
@@ -49,6 +63,10 @@ color: darkred;
 background-image: url(https://i.pinimg.com/564x/49/c8/39/49c8396ff6005e3731fd3830e9030dd9.jpg);
 color: red;
 }
+
+
+
+
 
 </style>
 {% endblock %}

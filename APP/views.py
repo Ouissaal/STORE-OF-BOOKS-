@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
-from .models import Author, Book, Order
+from .models import Author, Book, Order, OrderDetails
 from .forms import AuthorForm, BookForm, OrderForm
 from .models import Author, Book
 from .forms import AuthorForm, BookForm
 from django.core.paginator import Paginator
+
 
 def home(request): 
     books = Book.objects.all()
@@ -14,19 +15,17 @@ def home(request):
 
 def manager_book_list(request):
     books = Book.objects.all()
-    context = {
-        'books': books,
-        'is_manager': True,
-    }
-    return render(request, 'home.html', context=context)
+    paginator = Paginator(books, 6)
+    page_number = request.GET.get('page', 1)
+    page = paginator.page(page_number)    
+    return render(request, 'home.html', {'page': page, 'is_manager': True} )
 
 def user_book_list(request):
     books = Book.objects.all()
-    context = {
-        'books': books,
-        'is_manager': False
-    }
-    return render(request, 'home.html', context=context)
+    paginator = Paginator(books, 6)
+    page_number = request.GET.get('page', 1)
+    page = paginator.page(page_number)    
+    return render(request, 'home.html', {'page': page, 'is_manager': False} )
 
 def about(request):
     return render(request, 'about.html')
@@ -163,9 +162,7 @@ def manage_orders(request):
 def __str__(self):
     return f"Order #{self.id} - {self.customer_name}"
 
-def order_detail(request, order_id):
-    order = Order.objects.get(id=order_id)
-    return render(request, 'order_detail.html', {'order': order})
+
 
 
 def manage_order(request):
@@ -193,4 +190,8 @@ def order_page(request, id):
         'book_id': id,
     }
     return render(request, 'order_page.html', context=context)
+def details_of_order(request, order_id):
+    order = OrderDetails.objects.get(pk=order_id)
+    return render(request, 'order_details.html', {'order': order})
+    
 

@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 {% block content %}
 <h1>Manage Orders</h1>
 <table class="table table-striped mt-5 mb-5">
@@ -15,15 +16,16 @@
       {% for order in page %}
       <tr>
         <td>{{order.id}}</td>
-        <td>{{order.customer_name}}</td>
+        <td><a href="{% url 'Order_Details' order.id %}">{{order.customer_name}}</a></td>
         <td>{{order.order_date}}</td>
         <td>{{ order.book.title }}</td>
-        <td>{{order.status}}</td>
+        <td class="status" id="status_{{ order.id }}" data-order-id="{{ order.id }}">{{ order.status }}</td>
       </tr>
       {% endfor %}
     </tbody>
   </table>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{% static 'change_status.js' %}"></script>
 
     <nav aria-label="Page navigation example">
         <ul class="pagination">

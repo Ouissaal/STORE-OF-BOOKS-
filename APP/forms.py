@@ -23,7 +23,8 @@ class BookForm(forms.ModelForm):
                   'publication_year', 
                   'author', 
                   'price',
-                  'category',]
+                  'category',
+                  'image',]
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'genre': forms.TextInput(attrs={'class': 'form-control'}),
@@ -31,6 +32,7 @@ class BookForm(forms.ModelForm):
             'author': forms.Select(attrs={'class':'form-control'}),
             'price': forms.NumberInput(attrs={'class':'form-control'}),
             'category': forms.Select(attrs={'class': 'form-control'}),
+            'image':forms.FileInput(attrs={'class': 'form-control'})
         }
         
 class OrderForm(forms.ModelForm):
@@ -41,3 +43,4 @@ class OrderForm(forms.ModelForm):
             'customer_name': forms.TextInput(attrs={'class': 'form-control'}),
             'book': forms.Select(attrs={'class': 'form-control'}),
         }
+        
