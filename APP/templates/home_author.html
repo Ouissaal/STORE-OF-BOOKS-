@@ -18,10 +18,10 @@
             <h5 class="card-title">{{ author.name }}</h5>
             <h6 class="card-title text-dark">birth_date: {{ author.birth_date }}</h6>
             <p class="card-title text-dark">nationality: {{ author.nationality }}</p>
-       {% if is_manager %}
+             {% if is_manager %}
             <a href="{% url 'update_author' author.id %}" class="card-link btn btn-outline-primary">Update</a>
             <a href="{% url 'delete_author' author.id %}" class="card-link btn btn-outline-danger">delete</a>
-      {% endif%}
+           {% endif%}
           </div>
         </div>
       </div>
@@ -29,6 +29,18 @@
     {% endfor %}
   </div>
 </div>
+ <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          {% if page.has_previous %}
+          <li class="page-item"><a class="page-link" href="?page={{page.previous_page_number}}">Previous</a></li>
+          {% endif %}
+          <li class="page-item"><a href="#" class="page-link">Page {{ page.number }}</a></li>
+          {% if page.has_next %}
+          <li class="page-item"><a class="page-link" href="?page={{ page.next_page_number }}">Next</a></li>
+
+          {% endif %}
+        </ul>
+      </nav>
 <style>
 .card{
 box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;

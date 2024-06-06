@@ -39,5 +39,5 @@ class OrderForm(forms.ModelForm):
         fields = ['customer_name', 'book']
         widgets = {
             'customer_name': forms.TextInput(attrs={'class': 'form-control'}),
-            'book': forms.Select(attrs={'class': 'form-control'})
+            'book': forms.Select(attrs={'class': 'form-control'}),
         }

@@ -82,7 +82,10 @@ def delete_book(request, id):
 
 def home_author(request):
     authors = Author.objects.all()
-    return render(request, 'home_author.html', {'authors': authors})
+    paginator = Paginator(authors, 3)
+    page_number = request.GET.get('page', 1)
+    page = paginator.page(page_number)
+    return render(request, 'home_author.html', {'page': page, 'authors': authors})
 
 
 def user_author_page(request):
@@ -189,3 +192,4 @@ def order_page(request, id):
         'book_id': id,
     }
     return render(request, 'order_page.html', context=context)
+

@@ -21,8 +21,8 @@ urlpatterns = [
     path('user/customer_page/', views.customer_page, name='customer_page'), 
     # path('manager/manage_orders/', views.manage_orders, name='manage_orders'),
     path('manager/order_detail/<int:order_id>', views.order_detail, name='order_detail'),
-
     path('user/create_order/<int:id>', views.order_page, name='create_order'),
-    path('manager/manage_orders/', views.manage_order, name='manage_order')
+    path('manager/manage_orders/', views.manage_order, name='manage_order'),
+   
 ]
 
