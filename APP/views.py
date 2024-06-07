@@ -190,14 +190,11 @@ def order_page(request, id):
         'book_id': id,
     }
     return render(request, 'order_page.html', context=context)
-<<<<<<< HEAD
-=======
 
 def details_of_order(request, order_id):
     order = Order.objects.get(pk=order_id)
     return render(request, 'order_details.html', {'order': order})
     
->>>>>>> 67a28f78478ca938b796122ba28d6bcc1a38a487
 
 
 def details_of_order(request, order_id):

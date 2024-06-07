@@ -23,13 +23,6 @@ urlpatterns = [
     path('user/customer_page/', views.customer_page, name='customer_page'), 
     path('user/create_order/<int:id>', views.order_page, name='create_order'),
     path('manager/manage_orders/', views.manage_order, name='manage_order'),
-<<<<<<< HEAD
     path('manager/order_details/<int:order_id>/', views.details_of_order, name='Order_Details'),
 ]
 
-=======
-    path('manager/order_details/<int:order_id>/', views.details_of_order, name='Order_Details'), 
-    
- 
-]+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
->>>>>>> 67a28f78478ca938b796122ba28d6bcc1a38a487
