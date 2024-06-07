@@ -15,7 +15,9 @@
     <div class="card col-md-4 mb-5 m-4" style="width: 24rem;">
       <div class="books text-center">
           <div class="card-body">
-            <img src="{{ book.image }}" alt="" class="book_image card-img-top">
+            {% if book.image %}
+            <img  src="{{ book.image.url }}" alt="" class="book_image card-img-top">
+            {% endif %}
 
             <h5 class="card-title">{{ book.title }}</h5>
             <h6 class="card-title text-dark">Author: {{ book.author.name }}</h6>

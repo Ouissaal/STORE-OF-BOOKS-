@@ -1,4 +1,6 @@
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 from . import views
 
 urlpatterns = [
@@ -21,9 +23,7 @@ urlpatterns = [
     path('user/customer_page/', views.customer_page, name='customer_page'), 
     path('user/create_order/<int:id>', views.order_page, name='create_order'),
     path('manager/manage_orders/', views.manage_order, name='manage_order'),
-    path('manager/order_details/<int:order_id>/', views.details_of_order, name='Order_Details'),
-    
+    path('manager/order_details/<int:order_id>/', views.details_of_order, name='Order_Details'), 
     
  
-]
-
+]+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
