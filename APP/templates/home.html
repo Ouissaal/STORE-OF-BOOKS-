@@ -21,8 +21,15 @@
     <div class="card col-md-4 mb-5 m-4" style="width: 24rem;">
       <div class="books text-center">
           <div class="card-body">
+<<<<<<< HEAD
             <img src="{{ book.image }}" alt="" class="book_image card-img-top">
 <div class="book-overlay">
+=======
+            {% if book.image %}
+            <img  src="{{ book.image.url }}" alt="" class="book_image card-img-top">
+            {% endif %}
+
+>>>>>>> 67a28f78478ca938b796122ba28d6bcc1a38a487
             <h5 class="card-title">{{ book.title }}</h5>
             <h6 class="card-title text-secondary">Author: {{ book.author.name }}</h6>
             <a href="{% url 'book' book.id %}" class="card-link btn btn-outline-secondary">Read More</a>
