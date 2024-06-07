@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Author, Book, Order, OrderDetails
+from .models import Author, Book, Order
 from .forms import AuthorForm, BookForm, OrderForm
 from .models import Author, Book
 from .forms import AuthorForm, BookForm
@@ -122,7 +122,7 @@ def update_author(request, id):
         form = AuthorForm(instance=author)
 
     return render(request, 'manager/update_author.html', {'author': author, 'form': form})
-    return render(request, 'update_author.html', {'author': author, 'form': form})
+    
 
 
 def delete_author(request, id):
@@ -190,8 +190,15 @@ def order_page(request, id):
         'book_id': id,
     }
     return render(request, 'order_page.html', context=context)
-def details_of_order(request, order_id):
-    order = OrderDetails.objects.get(pk=order_id)
-    return render(request, 'order_details.html', {'order': order})
-    
 
+
+def details_of_order(request, order_id):
+    order = Order.objects.get(pk=order_id)
+    if request.method == 'POST':
+        form = OrderForm(request.POST, instance=order)
+        if form.is_valid():
+            form.save()
+            return redirect('manage_order')
+    else:
+        form = OrderForm(instance=order)
+    return render(request, 'order_details.html', {'order': order})

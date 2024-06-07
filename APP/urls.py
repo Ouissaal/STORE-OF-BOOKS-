@@ -5,8 +5,8 @@ urlpatterns = [
     path('home_page/', views.home, name='home_page'),
     path("manager/book_list", views.manager_book_list, name="book_list_manager"),
     path("user/book_list", views.user_book_list, name="book_list_user"),
-    path('about/', views.about, name='about'),
-    path('book/<int:id>', views.book, name='book'),
+    path('user/about/', views.about, name='about'),
+    path('user/book/<int:id>', views.book, name='book'),
     path('manager/create_book', views.create_book, name='create_book'),
     path('manager/update_book/<int:id>', views.update_book, name='update_book'),
     path('manager/delete_book/<int:id>', views.delete_book, name='delete_book'),
@@ -22,8 +22,5 @@ urlpatterns = [
     path('user/create_order/<int:id>', views.order_page, name='create_order'),
     path('manager/manage_orders/', views.manage_order, name='manage_order'),
     path('manager/order_details/<int:order_id>/', views.details_of_order, name='Order_Details'),
-    
-    
- 
 ]
 

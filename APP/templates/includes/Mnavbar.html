@@ -1,35 +1,31 @@
-
-<nav class="navbar navbar-expand-lg navbar-light bg-secondary  p-3">
+{% load static %}
+<nav style="background-color:#26272b;"  class="navbar navbar-expand-lg  p-3">
       <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'cart_page' %}"> 🏪 OB STORE</a>
-<img src="{% static 'images/logo_book.jpg'% }" alt="">
+        <a class="navbar-brand" href="{% url 'cart_page' %}"><img style="width: 40px;border-radius: 50px;"src="{% static 'images/logo.png' %}" alt="logo"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
    
         <div class=" collapse navbar-collapse " id="navbarNavDropdown">
-          <ul class="navbar-nav ms-auto">
+          <ul class="navbar-nav ms-auto ">
             <li class="nav-item ">
-              <a class="nav-link mx-2 active" aria-current="page" href="{% url 'book_list_manager' %}">Books📖</a>
+              <a class="nav-link mx-2 active text-light" aria-current="page" href="{% url 'book_list_manager' %}">Books📖</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-2" href="{% url 'create_book' %}">Create Book</a>
+              <a class="nav-link mx-2 text-light" href="{% url 'create_book' %}">Create Book</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-2" href="{% url 'manager_author_page' %}">Authors✍🏼</a>
+              <a class="nav-link mx-2 text-light" href="{% url 'manager_author_page' %}">Authors✍🏼</a>
             </li>
              <li class="nav-item">
-              <a class="nav-link mx-2" href="{% url 'create_author' %}">Create Author</a>
+              <a class="nav-link mx-2 text-light" href="{% url 'create_author' %}">Create Author</a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link mx-2" href="{% url 'manage_order' %}">Manage Orders</a>
+              <a class="nav-link mx-2 text-light" href="{% url 'manage_order' %}">Manage Orders</a>
             </li>
          
-            <li class="nav-item">
-              <a class="nav-link mx-2" href="{% url 'about' %}">About✨</a>
-            </li>
-            
+           
           <ul class="navbar-nav ms-auto d-none d-lg-inline-flex">
             <li class="nav-item mx-2">
               <a class="nav-link text-dark h5" href="" target="blank"><i class="fab fa-google-plus-square"></i></a>

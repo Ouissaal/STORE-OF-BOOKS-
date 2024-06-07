@@ -1,0 +1,30 @@
+body{
+background-color: burlywood;
+}
+.create{
+background-image:url(https://i.pinimg.com/564x/93/4b/d4/934bd464af5099cc9b8226054cfd997d.jpg);
+border-radius: 50px;
+
+height: 750px;
+    color: #fff;
+    position: relative;
+    
+
+    .overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+}
+.text{
+font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+margin: 15px;
+text-decoration:underline red;
+}
+input, select{
+margin: 17px;
+box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}

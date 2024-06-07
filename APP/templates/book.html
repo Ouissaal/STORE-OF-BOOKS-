@@ -1,25 +1,18 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="books_info">
-<h1 class="AA text-center"> Books Details :</h1>
-  <h1 class="Nbook">{{ book.title }}</h1>
-  <p><strong>Author:</strong> {{ book.author }}</p>
-  <p><strong>Genre:</strong> {{ book.genre }}</p>
-  <p><strong>Price:</strong> {{ book.price }}$</p>
-  <p><strong>publication_year:</strong> {{ book.publication_year }}</p>
-  <p><strong>Categore:</strong> {{ book.category.name }}</p>
-
+<div class="books_info text-center m-4 p-5 DETAILS">
+  <h5 class="text-light"><strong class="text-danger">Title:</strong> {{ book.title }}</h5>
+  <h5 class="text-light"><strong class="text-danger">Author:</strong> {{ book.author }}</h5>
+  <h5 class="text-light"><strong class="text-danger">Genre:</strong> {{ book.genre }}</h5>
+  <h5 class="text-light"><strong class="text-danger">Price:</strong> {{ book.price }}$</h5>
+  <h5 class="text-light"><strong class="text-danger">Publication_year:</strong> {{ book.publication_year }}</h5>
+  <h5 class="text-light"><strong class="text-danger">Category:</strong> {{ book.category.name }}</h5>
+<a href="{% url 'book_list_user' %}" class="btn btn-danger mt-5"> Return </a>
 </div>
+
 <style>
-.books_info{
-background-image: url(https://i.pinimg.com/564x/fb/77/d6/fb77d68578e3c3bcd6ecc32646499eeb.jpg)  ;
-margin: 10px;
-padding:100px;
-box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
-}
-.AA{
-color: darkred;
-text-decoration: underline;
+.DETAILS{
+background: url(https://i.pinimg.com/564x/7c/92/39/7c923953fda62bae121a11dcc35c3ac6.jpg);
 }
 
 </style>

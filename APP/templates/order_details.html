@@ -4,7 +4,6 @@
   <div class="bg">
     <div class="introduction text-center p-5 m-3">
       <h1 class="text-dark">ORDERS DETAILS</h1>
-      <h2 class="text-dark">Orders Details: Crafting Your Perfect Experience!</h2>
     </div>
   </div>
 </div>
@@ -13,17 +12,19 @@
     <div class="books text-center">
       <div class="card ">
         <div class="card-body">
-          <h5 class="card-title">Customer Name: {{order.customer_name}}</h5>
-          <h6 class="card-title text-dark">Order Date: {{order.order_date}}</h6>
-          <p class="card-title text-dark">Book: {{order.book}}</p>
-          <p class="card-title text-dark">Status: {{order.status}}</p>
-          <form method="post">
+<p >Customer Name:  {{ order.customer_name}}</p>
+<p >book: {{ order.book}} </p>
+<p >Order Date: {{ order.order_date}} </p>
+          <form method="post" action="{% url 'Order_Details' order.id %}">
             {% csrf_token %}
-            <select name="status" class="status-select">
-              <option value="pending">Pending</option>
-              <option value="shipped">Shipped</option>
-              <option value="delivered">Delivered</option>
-            </select>
+            <div class="form-group">
+              <label for="status">Status:</label>
+              <select name="status" id="status" class="form-control">
+                <option value="Pending" {% if order.status == 'Pending' %}selected{% endif %}>Pending</option>
+                <option value="Shipped" {% if order.status == 'Shipped' %}selected{% endif %}>Shipped</option>
+                <option value="Delivered" {% if order.status == 'Delivered' %}selected{% endif %}>Delivered</option>
+              </select>
+            </div>
             <button class="btn btn-warning" type="submit">Save</button>
           </form>
         </div>

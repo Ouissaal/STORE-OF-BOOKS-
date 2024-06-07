@@ -1,29 +1,17 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 <div class="create text-center m-5 p-5">
   <h1 class="text">Create A book</h1>
   <form method="POST">
     {% csrf_token %}
      {{ form.as_p }}
-    <button class="btn btn-warning " type="submit">Save</button>
+    <button class="btn btn-warning mt-3" type="submit">Save</button>
   </form>
+
 </div>
 
-<style>
-.create{
-background-image:url(https://i.pinimg.com/564x/40/8f/ea/408feae36658139303cb60efd4d1eb31.jpg);
-}
-.text{
-font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-margin: 10px;
-text-decoration:underline red;
-}
-input, select{
-margin: 17px;
-box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-}
-
-</style>
+<link rel="stylesheet" type="text/css" href="{% static 'create_book.css' %}">
 {% endblock %}
 
 
