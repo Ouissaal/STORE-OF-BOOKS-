@@ -208,7 +208,8 @@ def details_of_order(request, order_id):
     return render(request, 'order_details.html', {'order': order})
 
 def Home_page(request):
-    return render(request, 'Home_page.html')
+    books = Book.objects.filter(is_featured=True)[:4]
+    return render(request, 'Home_page.html', {'books': books})
 
 
 

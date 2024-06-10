@@ -26,36 +26,19 @@
 <p class="text-secondary text-center note">SOME QUALITY ITEMS</p>
 <h3 class="text-center mb-5"> Featured Books</h3>
     <div class="row ">
+        {% for book in books %}
+        
         <div class="col-md-3 ">
-            <img src="{% static 'images/book1.jpg' %}" alt="Book 1" class="img-fluidd" style="width: 150px;">
-             <h5 class="mt-2"> SIMPLE LIFE </h5>
-             <p class="text-secondary">Mohandas Karamchand</p>
-            <h6 class="text-warning">$ 40.00</h6> 
+            <a href="{% url 'book' book.id %}">
+                <img src="{{book.image.url}}" alt="Book 1" class="img-fluidd" style="width: 150px;">
+            </a>
+             <h5 class="mt-2"> {{book.title}} </h5>
+             <p class="text-secondary">{{ book.author.name }}</p>
+            <h6 class="text-warning">{{ book.price }}$</h6> 
 
         </div>
-        <div class="col-md-3">
-            <img src="{% static 'images/book2.webp' %}" alt="Book 2" class="img-fluidd" style="width: 160px;height: 240px;">
-            <h5  class="mt-2"> DESERT ESCAPES</h5>
-            <p class="text-secondary">Karen Gardiner</p>
-            <h6 class="text-warning">$ 30.00</h6> 
-            
-
-        </div>
-        <div class="col-md-3">
-            <img src="{% static 'images/book3.jpg' %}" alt="Book 3" class="img-fluidd" style="width:170px;height: 240px;">
-              <h5 class="mt-2"> SIMPLE LIVING </h5>
-             <p class="text-secondary">Sam Lacey </p>
-            <h6 class="text-warning">$ 36.00</h6> 
-             
-
-        </div>
-        <div class="col-md-3">
-            <img src="{% static 'images/book4.jpeg' %}" alt="Book 4" class="img-fluidd" style="width: 150px;height: 240px;">
-              <h5  class="mt-2"> POSITIVE THINKING </h5>
-            <p class="text-secondary">Norman Vincent Peale</p>
-            <h6 class="text-warning">$ 45.00</h6> 
-             
-        </div>
+       
+        {% endfor %}
     </div>
 </div>
 <hr>
