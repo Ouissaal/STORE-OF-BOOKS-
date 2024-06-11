@@ -5,7 +5,7 @@ from .models import Author, Book
 from .forms import AuthorForm, BookForm
 from django.core.paginator import Paginator
 from django.contrib.auth import authenticate, login, logout
-
+from django.contrib.auth.decorators import login_required
 
 def home(request): 
     books = Book.objects.all()
@@ -42,6 +42,7 @@ def book(request, id):
     return render(request, 'book.html', context=context)
 
 
+@login_required
 def create_book(request):
     if request.method == 'POST':
         # code to create a book
@@ -237,4 +238,4 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
-    return render('home_page')
+    return render(request, 'home_page.html')
