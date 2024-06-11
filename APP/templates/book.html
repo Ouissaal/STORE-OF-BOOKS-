@@ -45,41 +45,19 @@ Moreover, books serve as pillars of education, empowering individuals to expand 
 
 </div>
 <hr>
+
  <div class="row m-5 mt-5 text-center">
+ {%for b in booksCategory %}
         <div class="col-md-3 mb-5 ">
-            <img src="{% static 'images/book1.jpg' %}" alt="Book 1" class="img-fluidd" style="width: 150px;">
-             <h5 class="mt-2"> SIMPLE LIFE </h5>
-             <p class="text-secondary">Mohandas Karamchand</p>
-            <h6 class="text-warning">$ 40.00</h6> 
-
+            <img src="{{ b.image.url }}" alt="Book 1" class="img-fluidd" style="width: 150px;">
+             <h5 class="mt-2"> {{ b.title }} </h5>
+             <p class="text-secondary">{{ b.author.name }}</p>
+            <h6 class="text-warning">$ {{ b.price }}</h6> 
         </div>
-        <div class="col-md-3">
-            <img src="{% static 'images/book6.jpg' %}" alt="Book 2" class="img-fluidd" style="width: 160px;height: 240px;">
-            <h5  class="mt-2"> son intelligence</h5>
-            <p class="text-secondary">Wallenhorst Thomas</p>
-            <h6 class="text-warning">$ 30.00</h6> 
-            
-
-        </div>
-        <div class="col-md-3">
-            <img src="{% static 'images/book7.jpg' %}" alt="Book 3" class="img-fluidd" style="width:170px;height: 240px;">
-              <h5 class="mt-2">AUTOMIC HABITS</h5>
-             <p class="text-secondary">James Clear </p>
-            <h6 class="text-warning">$ 88.00</h6> 
-             
-
-        </div>
-        <div class="col-md-3">
-            <img src="{% static 'images/book8.jpg' %}" alt="Book 4" class="img-fluidd" style="width: 150px;height: 240px;">
-              <h5  class="mt-2"> GOLDEN RULES </h5>
-            <p class="text-secondary">Napoleon Hill</p>
-            <h6 class="text-warning">$ 90.00</h6> 
-             
-        </div>
-    </div>
+{% endfor%}
 </div>
 
-
+          
 
 
 

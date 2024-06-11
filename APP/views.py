@@ -33,8 +33,10 @@ def about(request):
 
 def book(request, id):
     book = Book.objects.get(id=id)
+    booksCategory = Book.objects.filter(category=book.category).exclude(id = book.id)
     context = {
-        'book': book    
+        'book': book,  
+        'booksCategory': booksCategory 
     }
     return render(request, 'book.html', context=context)
 
