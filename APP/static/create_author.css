@@ -10,3 +10,7 @@ input, select{
 margin: 17px;
 box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
+
+body{
+background-color: #f0f0e8;
+}

@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<header class="p-5">
+<div class="container m-5 ml-5">
+    <div class="row m-5">
+        <div class="col-md-6">
+            <div class="info">
+              <br>
+                <h2> WILD </h2><h2> LIFE</h2> 
+                <p class="text-secondary mt-4">Wild life, encompassing diverse species worldwide, plays vital roles in ecosystems, economies, and cultures. Threatened by habitat loss, poaching, and climate change, conservation efforts are crucial to safeguarding their future.</p>
+                <button class="btn btn-outline-danger button1  mt-2">READ MORE ⟶</button>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="image">
+                <img src="{% static 'images/home_page.webp' %}" alt="" style="width: 250px; height: 400px;box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;" class="img-fluidd mx-4"> 
+            </div>
+        </div>
+    </div>
+</div>
+</header>
+
+<div class="container mt-3 p-5 text-center">
+<p class="text-secondary text-center note">SOME QUALITY ITEMS</p>
+<h3 class="text-center mb-5"> Featured Books</h3>
+    <div class="row ">
+        <div class="col-md-3 ">
+            <img src="{% static 'images/book1.jpg' %}" alt="Book 1" class="img-fluidd" style="width: 150px;">
+             <h5 class="mt-2"> SIMPLE LIFE </h5>
+             <p class="text-secondary">Mohandas Karamchand</p>
+            <h6 class="text-warning">$ 40.00</h6> 
+
+        </div>
+        <div class="col-md-3">
+            <img src="{% static 'images/book2.webp' %}" alt="Book 2" class="img-fluidd" style="width: 160px;height: 240px;">
+            <h5  class="mt-2"> DESERT ESCAPES</h5>
+            <p class="text-secondary">Karen Gardiner</p>
+            <h6 class="text-warning">$ 30.00</h6> 
+            
+
+        </div>
+        <div class="col-md-3">
+            <img src="{% static 'images/book3.jpg' %}" alt="Book 3" class="img-fluidd" style="width:170px;height: 240px;">
+              <h5 class="mt-2"> SIMPLE LIVING </h5>
+             <p class="text-secondary">Sam Lacey </p>
+            <h6 class="text-warning">$ 36.00</h6> 
+             
+
+        </div>
+        <div class="col-md-3">
+            <img src="{% static 'images/book4.jpeg' %}" alt="Book 4" class="img-fluidd" style="width: 150px;height: 240px;">
+              <h5  class="mt-2"> POSITIVE THINKING </h5>
+            <p class="text-secondary">Norman Vincent Peale</p>
+            <h6 class="text-warning">$ 45.00</h6> 
+             
+        </div>
+    </div>
+</div>
+<hr>
+<div class="section">
+    <div class="container m-5">
+        <div class="row align-items-center">
+            <div class="col-md-4 ">
+                <img src="{% static 'images/book5.jpg' %}" alt="Book 2" class="img-fluid" style="max-width: 320px;box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;">
+            </div>
+            <div class="col-md-6 ">
+                <h2 class="mb-5"><span class="underline">Be</span>st Selling Book</h2>
+                <p class="text-secondary mt-2">By Timbur Hood</p>
+                <h4 class="mb-5">Birds Gonna Be Happy</h4>
+                <h6 class="text-decoration">Birds Gonna Be Happy" by Timbur Hood is a heartwarming tale celebrating avian joy and the wonders of nature.</h6>
+                <h5 class="text-warning mt-3">$ 45.00</h5> 
+                <button class="btn btn-outline-secondary button2 mt-4">Shop Now ⟶</button>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+<div class="quote text-center m-5">
+<h1 class="mb-4 "> Quote O<span class="underline">f T</span>he Day</h1>
+<h5 class="text-secondary mb-4">"The more that you read, the more things you will know. The more you learn, the more places you'll go."</h5>
+<h6 class="text-secondary"> Dr.Seuss</h6>
+</div>
+
+
+
+
+
+<link rel="stylesheet"  href="{% static 'home_page.css' %}">
+{% endblock %}
+

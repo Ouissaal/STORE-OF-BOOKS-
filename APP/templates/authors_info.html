@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<header> 
+    <h2>Authors</h2>
+</header>
+<link rel="stylesheet" href="{% static 'home_author.css' %}">
+
+<div class="container">
+    <div class="row">
+        {% for author in page %}
+        <div class="col-md-4">
+            {% if author.image %}
+            <img src="{{ author.image.url }}" alt="Author Image" class="img-fluid" style="width: 150px;">
+            {% endif %}
+            <div class="book-overlay text-center">
+                <h4 class="card-title mt-5">{{ author.name }}</h4>
+                <h6 class="card-title text-light">Birth Date: {{ author.birth_date }}</h6>
+                <h6 class="card-title text-light">Nationality: {{ author.nationality }}</h6>
+                {% if is_manager %}
+                <a href="{% url 'update_author' author.id %}" class="card-link btn btn-secondary mt-4">Update</a>
+                <a href="{% url 'delete_author' author.id %}" class="card-link btn btn-danger mt-4">Delete</a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="pagination-container mt-4 mb-4">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            {% if page.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page={{ page.previous_page_number }}">Previous</a></li>
+            {% endif %}
+            <li class="page-item"><a href="#" class="page-link">Page {{ page.number }}</a></li>
+            {% if page.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ page.next_page_number }}">Next</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+
+{% endblock %}

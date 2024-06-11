@@ -1,32 +1,36 @@
 {% load static %}
-<nav style="background-color:#26272b;"  class="navbar navbar-expand-lg  p-3">
-      <div class="container-fluid">
-
-        <a class="navbar-brand" href="{% url 'cart_page' %}"><img style="width: 40px;border-radius: 50px;"src="{% static 'images/logo.png' %}" alt="logo"></a>
-
+<nav style="background-color: #f0f0e8; border: 1px solid gainsboro;"  class="navbar navbar-expand-lg  ">
+      <div class="container-fluid ">
+       <a  style="font-family:'Times New Roman', Times, serif;color: whitesmoke; font-size: 30px;" class="navbar-brand text-dark" href="">BOOK</a>
+    
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
    
         <div class=" collapse navbar-collapse " id="navbarNavDropdown">
           <ul class="navbar-nav ms-auto ">
+             <li class="nav-item ">
+              <a class="nav-link mx-2 active text-secondary" aria-current="page" href="{% url 'Home_page' %}">HOME</a>
+            </li>
             <li class="nav-item ">
-              <a class="nav-link mx-2 active text-light" aria-current="page" href="{% url 'book_list_manager' %}">Books📖</a>
+              <a class="nav-link mx-2 active text-secondary" aria-current="page" href="{% url 'book_list_manager' %}">STORE</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-2 text-light" href="{% url 'create_book' %}">Create Book</a>
+              <a class="nav-link mx-2 text-secondary" href="{% url 'create_book' %}">Create Book</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-2 text-light" href="{% url 'manager_author_page' %}">Authors✍🏼</a>
+              <a class="nav-link mx-2 text-secondary" href="{% url 'manager_author_page' %}">AUTHORS</a>
             </li>
-             <li class="nav-item">
-              <a class="nav-link mx-2 text-light" href="{% url 'create_author' %}">Create Author</a>
+              <li class="nav-item">
+              <a class="nav-link mx-2 text-secondary" href="{% url 'create_author' %}">Create Author</a>
             </li>
 
-            <li class="nav-item">
-              <a class="nav-link mx-2 text-light" href="{% url 'manage_order' %}">Manage Orders</a>
+           <li class="nav-item">
+              <a class="nav-link mx-2 text-secondary" href="{% url 'manage_order' %}">Manage Orders</a>
+          </li>
+          <li class="nav-item">
+              <a style="border: 2px solid gray;border-radius: 44px;" class="nav-link mx-2 text-secondary" href="{% url 'account_page' %}">Account</a>
             </li>
-         
            
           <ul class="navbar-nav ms-auto d-none d-lg-inline-flex">
             <li class="nav-item mx-2">
@@ -44,3 +48,4 @@
       </div>
     </nav>
       
+

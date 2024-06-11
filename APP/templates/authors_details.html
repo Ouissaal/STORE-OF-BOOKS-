@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+ <div class="section">
+    <div class="container m-5">
+        <div class="row align-items-center">
+            <div class="col-md-4 ">
+              {% if author.image %}
+                 <img src="{{ author.image.url }}" alt="Book 2" class="img-fluid" style="max-width: 320px;box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px; ">
+                {% endif %}
+            </div>
+            <div class="col-md-6 mt-4">
+                <h4 style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;"  class="text-danger"><span class="underline">{{ author.name }}</span></h4>
+                <h5 class="">{{ author.birth_date }}</h5>
+                <h5 class="">{{ author.nationality }}</h5>
+<p class="text-secondary">Authors are the architects of our literary landscape, each wielding a unique pen to craft stories that resonate with readers across time and space. With boundless creativity and unwavering dedication, they breathe life into characters, transport us to distant lands, and explore the depths of the human condition. Through their words, authors have the power to captivate our minds, stir our emotions, and ignite our imaginations. They inspire us to dream, challenge us to think critically, and remind us of the profound impact of storytelling on our lives. Whether through fiction, non-fiction, or poetry, authors leave an indelible mark on the world, enriching our cultural heritage and shaping the way we perceive ourselves and the world around us.</p>
+                  
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="Product-description">
+<h6 class="description "> DESCRIPTION</h6>
+<hr>
+<p class="text-secondary p-4 mb-5">Authors are the alchemists of literature, transforming mere words into portals of enchantment that transport us to realms unknown. With their pens as magic wands, they conjure tales of love, loss, triumph, and tragedy that resonate deeply within the chambers of our hearts. Each author brings forth a distinct voice, weaving narratives that reflect the kaleidoscope of human experience. Through their works, they illuminate the human condition, offering insight, empathy, and solace to readers around the globe. Authors are the custodians of culture, preserving the stories of past generations while seeding the soil for future imaginations to flourish. In the grand tapestry of literature, authors are the weavers, threading together the fabric of our collective consciousness with threads of prose and poetry that endure through the ages.</p>
+
+</div>
+
+<div class="Also-Like mt-5">
+<p class="text-secondary text-center"> RELATED PRODUCTS</p>
+<h3 class="text-center"> You May Also Like </h3>
+
+</div>
+<hr>
+ <div class="row m-5 mt-5 text-center">
+        <div class="col-md-3 mb-5 ">
+            <img src="{% static 'images/book1.jpg' %}" alt="Book 1" class="img-fluidd" style="width: 150px;">
+             <h5 class="mt-2"> SIMPLE LIFE </h5>
+            <h6 class="text-warning">$ 40.00</h6> 
+
+        </div>
+        <div class="col-md-3">
+            <img src="{% static 'images/book6.jpg' %}" alt="Book 2" class="img-fluidd" style="width: 160px;height: 240px;">
+            <h5  class="mt-2"> son intelligence</h5>
+            <h6 class="text-warning">$ 30.00</h6> 
+            
+
+        </div>
+        <div class="col-md-3">
+            <img src="{% static 'images/book7.jpg' %}" alt="Book 3" class="img-fluidd" style="width:170px;height: 240px;">
+              <h5 class="mt-2">AUTOMIC HABITS</h5>
+            <h6 class="text-warning">$ 88.00</h6> 
+             
+
+        </div>
+        <div class="col-md-3">
+            <img src="{% static 'images/book8.jpg' %}" alt="Book 4" class="img-fluidd" style="width: 150px;height: 240px;">
+              <h5  class="mt-2"> GOLDEN RULES </h5>
+            <h6 class="text-warning">$ 90.00</h6> 
+             
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<link rel="stylesheet"  href="{% static 'home_page.css' %}">
+
+{% endblock %}

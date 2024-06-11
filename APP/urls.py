@@ -18,11 +18,12 @@ urlpatterns = [
     path('manager/create_author/', views.create_author, name='create_author'),
     path('manager/update_author/<int:id>/', views.update_author, name='update_author'),
     path('manager/delete_author/<int:id>/', views.delete_author, name='delete_author'),
-    path('', views.cart_page, name='cart_page'),
     path('manager/', views.manager_page, name='manager_page'),
     path('user/customer_page/', views.customer_page, name='customer_page'), 
     path('user/create_order/<int:id>', views.order_page, name='create_order'),
     path('manager/manage_orders/', views.manage_order, name='manage_order'),
     path('manager/order_details/<int:order_id>/', views.details_of_order, name='Order_Details'),
+    path('', views.Home_page, name='Home_page'),
+    path('user/author_details/<int:id>', views.author_details, name='author_details'),
+    path('account_page/', views.account_page, name='account_page'),
 ]
-

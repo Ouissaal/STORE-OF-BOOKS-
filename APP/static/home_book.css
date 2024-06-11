@@ -1,95 +1,50 @@
 body{
-background:rgb(218, 226, 228);
+background:#f0f0e8;
+
 }
 
+.shop{
+font-family: 'Times New Roman', Times, serif;
+font-size: 60px;
+margin-top: 40px;}
 
 .pagination-container {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
+  
+
   }
+  
 
 
-.header {
-    background: url(https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg?auto=compress&cs=tinysrgb&h=350);
-    height: 600px;
-    color: #fff;
-    position: relative;
+.book-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 8px;
+    padding: 14px;
     
-
-    .overlay {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      background-color: rgba(0, 0, 0, 0.7);
-    }
-
-    .container {
-      position: relative;
-      top: 35%;
-    }
-
-    h1 {
-      text-transform: capitalize;
-      font-size: 50px;
-
-      span {
-      color: chartreuse;
-    
-      }
-    }
-
-
-    .form-group {
-      .outline {
-        @extend %button-outline;
-        @include tranSation(0.3s);
-        text-transform: capitalize;
-        padding: 5px 40px;
-      }
-
-    
-      
-    }
 }
 
-.card {
-      border: 7px solid #fff;
-      width: 300px;
-      height: 300px;
-      margin-top: 20px;
-      box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
-      &:hover {
-      transform: scale(1.1, 1.1);
-      }
-      .book-img {
-        position: relative;
-        img {
-          height: 300px;
-        }
-
-        
-
-          .price {
-            color: #fff;
-            font-size: 30px;
-            margin-top: 50px;
-            margin-bottom: 20px;
-            opacity: 0;
-            transform: translateY(0);
-            @include tranSation(0.3s);
-          }
-
-          .btn {
-            @extend %button-outline;
-            opacity: 0;
-            transform: translateY(0);
-            @include tranSation(0.3s);
-          }
-        }
-      }
-.card-body{
-margin-top: 35%;
+h5{
+color: peru;
 }
-    
+
+.book-info {
+    text-align: center;
+}
+
+.pagination-container {
+    text-align: center;
+}
+.book-image{
+box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+max-width: 172px;
+max-height: 200px;
+}
+.card-link{
+color: peru;
+border: 1px solid peru;
+padding: 2px;
+border-radius: 0;
+}

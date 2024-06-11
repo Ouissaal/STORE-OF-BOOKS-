@@ -21,6 +21,8 @@ class Author(models.Model):
     ])
     birth_date = models.DateField(blank=True, null=True)
     nationality = models.CharField(max_length=50, blank=True, null=True)
+    image = models.ImageField(upload_to='book_image/', blank=True, null=True)
+   
 
     def __str__(self):
         return self.name

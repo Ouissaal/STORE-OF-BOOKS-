@@ -1,0 +1,67 @@
+body{
+background:#f0f0e8;
+}
+h2{
+font-family:'Times New Roman', Times, serif;
+font-size: 55px;
+}
+.button1{
+border-color:burlywood;
+background-color: transparent;
+color: burlywood;
+}
+.img-fluidd{
+box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+
+}
+
+.text-center{
+font-family:'Times New Roman', Times, serif;
+}
+
+.section{
+    margin-left: 130px;
+     background-color:#f0f0e8bd ;
+
+}
+.button2{
+border-color:#f0f0e8bd;
+background-color: transparent;
+color:black;
+}
+.quote{
+height: 250px;
+}
+
+.underline{
+text-decoration: underline peru;
+
+
+}
+.note{
+font-size: 12px;
+}
+
+        .star-rating {
+            direction: rtl;
+            display: inline-flex;
+            font-size: 2em;
+        }
+        .star-rating input {
+            display: none;
+        }
+        .star-rating label {
+            color: #ddd;
+            cursor: pointer;
+        }
+        .star-rating input:checked ~ label,
+        .star-rating label:hover,
+        .star-rating label:hover ~ label {
+            color: gold;
+        }
+.button4{
+border: 1px solid peru;
+background-color: peru;
+border-radius: 0px;
+}
+

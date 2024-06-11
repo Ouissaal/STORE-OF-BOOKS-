@@ -1,19 +1,88 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-<div class="books_info text-center m-4 p-5 DETAILS">
-  <h5 class="text-light"><strong class="text-danger">Title:</strong> {{ book.title }}</h5>
-  <h5 class="text-light"><strong class="text-danger">Author:</strong> {{ book.author }}</h5>
-  <h5 class="text-light"><strong class="text-danger">Genre:</strong> {{ book.genre }}</h5>
-  <h5 class="text-light"><strong class="text-danger">Price:</strong> {{ book.price }}$</h5>
-  <h5 class="text-light"><strong class="text-danger">Publication_year:</strong> {{ book.publication_year }}</h5>
-  <h5 class="text-light"><strong class="text-danger">Category:</strong> {{ book.category.name }}</h5>
-<a href="{% url 'book_list_user' %}" class="btn btn-danger mt-5"> Return </a>
+
+ <div class="section">
+    <div class="container m-5">
+        <div class="row align-items-center">
+            <div class="col-md-4 ">
+              {% if book.image %}
+                 <img src="{{ book.image.url }}" alt="Book 2" class="img-fluid" style="max-width: 320px;box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px; ">
+                {% endif %}
+            </div>
+            <div class="col-md-6 mt-4">
+                <h4 style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;"  class="text-danger"><span class="underline">{{ book.title }}</span></h4>
+                <h5 class="text-secondary ">by {{ book.author }}</h5>
+                <h5 class="">genre:{{ book.genre }}</h5>
+                 <p class="text-secondary">An enthralling tale by a skilled writer, this book, within the [genre] category, offers a timeless narrative with rich characters and profound themes. Its engaging plot and insightful commentary have garnered acclaim, making it a must-read for all. </p>
+                <h5 class="">P.Y:{{ book.publication_year }}</h5>
+                <h5 class="">Category:{{ book.category.name }}</h5>
+               <h5 class="text-warning"> {{ book.price }}$</h5>
+                   <div class="button-group mt-5 p-2">
+                  <input type="number" class="btn text-dark" style="width: 60px; border: 1px solid peru;" value="1"></button>
+                    <a href="{% url 'create_order' book.id %}" class="btn  text-light" style="border: 1px solid peru; background-color: peru; border-radius: 0;">ORDER NOW</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
-<style>
-.DETAILS{
-background: url(https://i.pinimg.com/564x/7c/92/39/7c923953fda62bae121a11dcc35c3ac6.jpg);
-}
 
-</style>
+<div class="Product-description">
+<h6 class="description "> DESCRIPTION</h6>
+<hr>
+<p class="text-secondary p-4 mb-5">Books are more than mere objects; they are gateways to infinite worlds, vessels of knowledge, and repositories of human experience. From the ancient scrolls of antiquity to the digital libraries of the modern era, books have served as conduits of culture, transmitting ideas across time and space. They capture the essence of human creativity, allowing us to explore the depths of imagination and contemplate the complexities of existence.
+
+Within the pages of a book, one can embark on epic adventures, traverse distant lands, and encounter characters whose lives resonate with our own. From the gripping narratives of fiction to the meticulously researched volumes of non-fiction, books offer insights into the human condition, inviting readers to empathize, reflect, and grow. They spark curiosity, ignite passions, and inspire change, shaping the course of history and influencing the trajectory of societies.
+
+Moreover, books serve as pillars of education, empowering individuals to expand their horizons, hone their skills, and pursue their aspirations. Whether delving into the realms of science, philosophy, literature, or art, readers are afforded the opportunity to engage with diverse perspectives and deepen their understanding of the world. Through the written word, we inherit the wisdom of generations past and contribute to the collective knowledge of humanity.</p>
+
+</div>
+
+<div class="Also-Like mt-5">
+<p class="text-secondary text-center"> RELATED PRODUCTS</p>
+<h3 class="text-center"> You May Also Like </h3>
+
+</div>
+<hr>
+ <div class="row m-5 mt-5 text-center">
+        <div class="col-md-3 mb-5 ">
+            <img src="{% static 'images/book1.jpg' %}" alt="Book 1" class="img-fluidd" style="width: 150px;">
+             <h5 class="mt-2"> SIMPLE LIFE </h5>
+             <p class="text-secondary">Mohandas Karamchand</p>
+            <h6 class="text-warning">$ 40.00</h6> 
+
+        </div>
+        <div class="col-md-3">
+            <img src="{% static 'images/book6.jpg' %}" alt="Book 2" class="img-fluidd" style="width: 160px;height: 240px;">
+            <h5  class="mt-2"> son intelligence</h5>
+            <p class="text-secondary">Wallenhorst Thomas</p>
+            <h6 class="text-warning">$ 30.00</h6> 
+            
+
+        </div>
+        <div class="col-md-3">
+            <img src="{% static 'images/book7.jpg' %}" alt="Book 3" class="img-fluidd" style="width:170px;height: 240px;">
+              <h5 class="mt-2">AUTOMIC HABITS</h5>
+             <p class="text-secondary">James Clear </p>
+            <h6 class="text-warning">$ 88.00</h6> 
+             
+
+        </div>
+        <div class="col-md-3">
+            <img src="{% static 'images/book8.jpg' %}" alt="Book 4" class="img-fluidd" style="width: 150px;height: 240px;">
+              <h5  class="mt-2"> GOLDEN RULES </h5>
+            <p class="text-secondary">Napoleon Hill</p>
+            <h6 class="text-warning">$ 90.00</h6> 
+             
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<link rel="stylesheet"  href="{% static 'home_page.css' %}">
+
 {% endblock %}

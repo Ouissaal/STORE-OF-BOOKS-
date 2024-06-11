@@ -15,14 +15,14 @@ def home(request):
 
 def manager_book_list(request):
     books = Book.objects.all()
-    paginator = Paginator(books, 6)
+    paginator = Paginator(books, 8)
     page_number = request.GET.get('page', 1)
     page = paginator.page(page_number)    
     return render(request, 'home.html', {'page': page, 'is_manager': True} )
 
 def user_book_list(request):
     books = Book.objects.all()
-    paginator = Paginator(books, 6)
+    paginator = Paginator(books, 8)
     page_number = request.GET.get('page', 1)
     page = paginator.page(page_number)    
     return render(request, 'home.html', {'page': page, 'is_manager': False} )
@@ -86,14 +86,14 @@ def home_author(request):
 
 def user_author_page(request):
     authors = Author.objects.all()
-    paginator = Paginator(authors, 3)
+    paginator = Paginator(authors, 8)
     page_number = request.GET.get('page', 1)
     page = paginator.page(page_number)    
     return render(request, 'home_author.html', {'page': page, 'is_manager': False} )
 
 def manager_author_page(request):
     authors = Author.objects.all()
-    paginator = Paginator(authors, 3)
+    paginator = Paginator(authors, 8)
     page_number = request.GET.get('page', 1)
     page = paginator.page(page_number)
     return render(request, 'home_author.html', {'page': page, 'is_manager': True})
@@ -131,8 +131,7 @@ def delete_author(request, id):
         author.delete()
         return redirect('home')
     return render(request, 'delete_author.html', {'author': author})
-def cart_page(request):
-    return render(request, 'cart_page.html')
+
 
 def manager_page(request):
     return render(request, 'manager.html')
@@ -207,3 +206,15 @@ def details_of_order(request, order_id):
     else:
         form = OrderForm(instance=order)
     return render(request, 'order_details.html', {'order': order})
+
+def Home_page(request):
+    return render(request, 'Home_page.html')
+
+
+
+def author_details(request, id):
+    author = Author.objects.get(id=id)
+    return render(request, 'authors_details.html', {'author': author})
+
+def account_page(request):
+    return render(request, 'account_page.html')

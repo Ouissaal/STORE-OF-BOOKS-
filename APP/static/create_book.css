@@ -1,12 +1,13 @@
+
 body{
-background-color: burlywood;
+background-color: #f0f0e8;
 }
 .create{
 background-image:url(https://i.pinimg.com/564x/93/4b/d4/934bd464af5099cc9b8226054cfd997d.jpg);
 border-radius: 50px;
 
 height: 750px;
-    color: #fff;
+    color: olivedrab;
     position: relative;
     
 
