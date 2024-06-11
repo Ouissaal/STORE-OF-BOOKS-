@@ -27,4 +27,5 @@ urlpatterns = [
     path('user/author_details/<int:id>', views.author_details, name='author_details'),
     path('login_view/', views.login_view, name='login'),
     path('logout/', views.logout_view, name='logout'),
+    path('register/', views.register, name='register'),
 ]

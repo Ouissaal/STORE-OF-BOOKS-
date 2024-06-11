@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from .models import Author, Book, Order
 from .forms import AuthorForm, BookForm, OrderForm
@@ -6,6 +7,7 @@ from .forms import AuthorForm, BookForm
 from django.core.paginator import Paginator
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 def home(request): 
     books = Book.objects.all()
@@ -239,3 +241,22 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return render(request, 'home_page.html')
+
+def register(request):
+    print("register")
+    if request.method == 'POST':
+        
+        username = request.POST['username']
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
+        email = request.POST['email']
+        password1 = request.POST['password1']
+        password2 = request.POST['password2']
+
+        if password1 == password2:
+            user = User.objects.create_user(username=username, first_name=first_name, last_name=last_name, email=email, password=password1)
+            user.save()
+            return redirect('account_page')
+        else:
+            return JsonResponse({'error': 'Passwords do not match'})
+    return render(request, 'account_page.html')

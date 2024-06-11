@@ -43,31 +43,37 @@
             </div>
             <div class="signup" id="signup">
                 
-                <form  method="POST"  class="sign-up-form mt-4" id="signUpForm">
+                <form  method="POST" action="{% url 'register' %}"  class="sign-up-form mt-4" id="signUpForm">
                    {% csrf_token %}
                     <h2 class="title mt-4">Sign up</h2>
 
                     <div class="input-fieldU" >
                         <i class="fa-solid fa-user"></i>
-                        <input type="text"  placeholder="Full_Name" id="fullname" onkeyup="isEmpty()" required>
+                        <input type="text"  placeholder="first name" id="first_name" name="first_name" onkeyup="isEmpty()" required>
                        
                     </div>
                     <div class="input-fieldU" >
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text"  placeholder="last name" id="last" name="last_name" onkeyup="isEmpty()" required>
+                    </div>
+                    <div class="input-fieldU" >
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text"  placeholder="username" id="usernmae" name="username" onkeyup="isEmpty()" required>
+                    </div>
+                    <div class="input-fieldU" >
                         <i class="fa-solid fa-at"></i>
-                        <input type="email"  placeholder="Email" id="email" onkeyup="isEmpty()" required>
-                      
+                        <input type="email"  placeholder="Email" id="email" name="email" onkeyup="isEmpty()" required>
                     </div>
                    
                     <div class="input-fieldU" >
                         <i class="fa-solid fa-lock"></i>
-                        <input type="password" placeholder="Password" id="password2" onkeyup="isEmpty()" required>
+                        <input type="password" placeholder="Password" id="password2" name="password1" onkeyup="isEmpty()" required>
                         <br>
-                       
                     </div>
 
                 <div class="input-fieldU" >
                         <i class="fa-solid fa-lock"></i>
-                        <input type="password" placeholder="Confirm Password" id="confirmpassword" onkeyup="isEmpty()" required>
+                        <input type="password" placeholder="Confirm Password" id="confirmpassword" name="password2" onkeyup="isEmpty()" required>
                     </div>
                     <button class="btn btn-info" type="submit" value="submit" id="btn2" >Sign up</button>
                 </form>
@@ -107,11 +113,11 @@ sign_in_btn.addEventListener("click", () => {
 });
 
 
-let signUpForm = document.getElementById('signUpForm');
+{% comment %} let signUpForm = document.getElementById('signUpForm');
 signUpForm.addEventListener('submit', function(event) {
     event.preventDefault(); 
-    
-});
+        
+}); {% endcomment %}
 
 
 </script>
