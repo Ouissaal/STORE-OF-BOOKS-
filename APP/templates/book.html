@@ -7,12 +7,14 @@
         <div class="row align-items-center">
             <div class="col-md-4 ">
               {% if book.image %}
-                 <img src="{{ book.image.url }}" alt="Book 2" class="img-fluid" style="max-width: 320px;box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px; ">
+                 <img src="{{ book.image.url }}" alt="Book 2" class="img-fluid" style="max-width: 320px;box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px; object-fit: contain;">
                 {% endif %}
             </div>
             <div class="col-md-6 mt-4">
                 <h4 style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;"  class="text-danger"><span class="underline">{{ book.title }}</span></h4>
-                <h5 class="text-secondary ">by {{ book.author }}</h5>
+            <a href="{% url 'author_details' book.id %}">
+                <h5 class="text-secondary">by {{ book.author.name }}</h5>
+             </a>
                 <h5 class="">genre:{{ book.genre }}</h5>
                  <p class="text-secondary">An enthralling tale by a skilled writer, this book, within the [genre] category, offers a timeless narrative with rich characters and profound themes. Its engaging plot and insightful commentary have garnered acclaim, making it a must-read for all. </p>
                 <h5 class="">P.Y:{{ book.publication_year }}</h5>
@@ -49,7 +51,9 @@ Moreover, books serve as pillars of education, empowering individuals to expand 
  <div class="row m-5 mt-5 text-center">
  {%for b in booksCategory %}
         <div class="col-md-3 mb-5 ">
-            <img src="{{ b.image.url }}" alt="Book 1" class="img-fluidd" style="width: 150px;">
+ <a href="{% url 'book' b.id %}">
+            <img src="{{ b.image.url }}" alt="Book" class="img-fluidd" style="width: 150px;">
+ </a>
              <h5 class="mt-2"> {{ b.title }} </h5>
              <p class="text-secondary">{{ b.author.name }}</p>
             <h6 class="text-warning">$ {{ b.price }}</h6> 

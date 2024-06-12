@@ -25,5 +25,6 @@ urlpatterns = [
     path('manager/order_details/<int:order_id>/', views.details_of_order, name='Order_Details'),
     path('', views.Home_page, name='Home_page'),
     path('user/author_details/<int:id>', views.author_details, name='author_details'),
-    path('account_page/', views.account_page, name='account_page'),
+    path('login_view/', views.login_view, name='login'),
+    path('logout/', views.logout_view, name='logout'),
 ]

@@ -5,22 +5,14 @@
     font-family: 'poppins',sans-serif;
 }
 
-.imglogo{
-    margin-bottom: auto;
-    position: absolute; 
-    top: 205px;
-    left: 4px;
-    font-size: -86px;
-   
-}
 body{
     display:flex;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background:#f0f0e8;
-    background-position : right center;
-    background-repeat: no-repeat;
+    background-color:#f0f0e8;
+    
+    
 }   
 .container{
     position: relative;
@@ -38,7 +30,7 @@ body{
     left: -50%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(-45deg, #dbe647, #d18b20);
+    background: linear-gradient(-45deg, #47bee6, #4ca7c1);
     z-index: 6;
     transform: translateX(100%);
     transition: 1s ease-in-out;
@@ -111,18 +103,10 @@ button{
     cursor: pointer;
 }
 
-#message{
-    color: green;
-    font-size: medium;
-    font-weight: bold;
-    width: 100%;
-    height: 100%;
-    margin-top: auto;
-    border-right: 100px;
-    background-color: red;
-}
+
 .title{
-    font-size: 25px;
+  
+    font-family: 'Times New Roman', Times, serif;
     color: rgb(5, 5, 5);
     margin-bottom: 5px;
 }
@@ -179,17 +163,13 @@ button{
     color: #444;
 }
 
-/* Hide number input increasement box button Chrome */
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-.formerror{
-    font-size: small;
-    color: red;
-    align-items: center;    
-}
+
 
 .btn{
     width: 100px;
@@ -225,7 +205,7 @@ input::-webkit-inner-spin-button {
     text-align: center;
     z-index: 6;
 }
-/* For input filed */
+
 .left-panel {
     pointer-events: none;
 }  
@@ -247,12 +227,13 @@ input::-webkit-inner-spin-button {
 }
 
 .content{
-    color: darkslategrey;
+    color: wheat;
+    font-family:Georgia, 'Times New Roman', Times, serif;
     transition: 1.1s ease-in-out;
     transition-delay: 0.5s;
 }
 
-.left-panel .image,
+
 .left-panel .content {
     transform: translateX(-200%);
 }
@@ -293,8 +274,7 @@ input::-webkit-inner-spin-button {
     pointer-events: all;
 }
 
-/* Responsive */ 
-/* 779 */
+
 @media(max-width:779px){           
     .container{
         width: 100vw;
@@ -307,14 +287,12 @@ input::-webkit-inner-spin-button {
         padding-right: 250px;
     }
 }
-/* 635 */
+
 @media(max-width:635px){
     .container::before{
         display:none;
     }
-    /* form{
-        width: 80%;
-    } */
+    
     .signin-signup{
         position: absolute;
         top: 0;

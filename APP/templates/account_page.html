@@ -1,113 +1,98 @@
 {% load static%}
-<!DOCTYPE html>
-<html lang="en">
+{% block content %}
+    
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/ece3175d47.js" crossorigin="anonymous"></script>
+
+   <script src="https://kit.fontawesome.com/ece3175d47.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="{% static 'account.css' %}">
-    <title>ACCOUNT</title>
-</head>
+    <title>Login</title>
+
 
 <body>
 
     <div class="container ">
         <div class="signin-signup"> 
             <div class="signin">
-                <form action="/mysigninaction.js" name="mysigninForm" onsubmit= "return validateSiginForm()" method="post" class="sign-in-form p-3">
+                <form method="POST"  class="sign-in-form p-3">
+                   {% csrf_token %}
                     <h2 class="title mt-2">Login</h2>
                     <div class="input-field" id="userlogin">
-                        <i class="fa-solid fa-user"></i>
-                        <input type="text" name="fname" placeholder="username" required>
-                        <div class="formerror"></div>
+                      <i class="fa-solid fa-user"></i>
+                        <input type="text"  placeholder="Username"  id="username"  required>
                     </div>
                     <div class="input-field" id="userpassword">
                         <i class="fa-solid fa-lock"></i>
-                        <input type="password"  name="fpassword" placeholder="password" required>
-                        <div class="formerror"></div>
-                        <!-- id="psw" name="psw"
-                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter,
-                     and at least 8 or more characters" -->
+                        <input type="password"   placeholder="Password" id="password1" required>
+                       
                     </div>
-                    <!-- <input type="submit" value="Login" class="btn"> -->
+                 
                     <button type="submit" class="btn btn-primary" value="Login" id="btn1">Login</button>
                 </form>
             </div>
             <div class="forgot">
-                <form action="/myaction2.js" name="forgotForm" onsubmit="return validateForgotForm()" method="post" class="forgotpassword">
-                    <h2 class="title">Forgot password?</h2>
+                <form   method="post" class="forgotpassword">
+                    <h4 class="title text-secondary">Forgot password?</h4>
                     <div class="forgotPassword">
                         <div class="input-field" id="Forgotemail">
                             <i class="fa-solid fa-user"></i>
-                            <input type="text" name="femail" placeholder="username" required>
-                            <div class="formerror"></div>
-                        </div>
-                        <!-- <input type="submit" value="submit" class="btn"> -->
+                            <input type="text"  placeholder="Email" id="email" required>
+                        </div>                       
                         <button type="submit" class="btn btn-outline" value="submit" id="btn2">Submit</button>
                     </div>
                 </form>
             </div>
-            <!-- Here right SingUp form started. -->
             <div class="signup" id="signup">
                 
-                <form action="# " name="myForm" method="post" class="sign-up-form mt-4" id="signUpForm">
-                    <!-- <div id="message"></div> -->
+                <form  method="POST"  class="sign-up-form mt-4" id="signUpForm">
+                   {% csrf_token %}
                     <h2 class="title mt-4">Sign up</h2>
 
-                    <div class="input-fieldU" id="name">
+                    <div class="input-fieldU" >
                         <i class="fa-solid fa-user"></i>
-                        <input type="text" name="fname" placeholder="firstname" id="username" onkeyup="isEmpty()" required>
-                        <div class="formerror"></div>
+                        <input type="text"  placeholder="Full_Name" id="fullname" onkeyup="isEmpty()" required>
+                       
                     </div>
-                    <div class="input-fieldU" id="email">
+                    <div class="input-fieldU" >
                         <i class="fa-solid fa-at"></i>
-                        <input type="email" name="femail" placeholder="email" id="useremail" onkeyup="isEmpty()" required>
-                        <div class="formerror"></div>
+                        <input type="email"  placeholder="Email" id="email" onkeyup="isEmpty()" required>
+                      
                     </div>
-                    <!-- <div class="input-field" id="whatsapp">
-                        <i class="fa-brands fa-whatsapp-square"></i>
-                        <input type="number" name="fwhatsapp" placeholder="Whatsapp" required>
-                        <div class="formerror"></div>
-                    </div> -->
-                    <div class="input-fieldU" id="password">
+                   
+                    <div class="input-fieldU" >
                         <i class="fa-solid fa-lock"></i>
-                        <input type="password" name="fpass" placeholder="password"  id="userpassword" onkeyup="isEmpty()" required>
+                        <input type="password" placeholder="Password" id="password2" onkeyup="isEmpty()" required>
                         <br>
-                        <div class="formerror"></div>
+                       
                     </div>
 
-                    <!-- <input type="submit" value="Signup" onclick="submitFunction()" id="ab" class="btn"> -->
-                    <button class="btn btn-info" type="submit" value="Signup"  onclick="submitFunction()" disabled id="btn">Sign up</button>
-                    <div id="message"></div>    
-                    <!-- <a href="https://lara.co.in" id="message">Hurrey! Signup success, Please check you inbox to verify email.</a> -->
-                
-
+                <div class="input-fieldU" >
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" placeholder="Confirm Password" id="confirmpassword" onkeyup="isEmpty()" required>
+                    </div>
+                    <button class="btn btn-info" type="submit" value="submit" id="btn2" >Sign up</button>
                 </form>
             </div>
         </div>
-        <!-- Here Animation panel started -->
+        <!-- Animation  -->
         <div class="panels-container">      
             <div class="panel left-panel">
                 <div class="content">
                     <h3>Book Store</h3>
-                    <p>We are happy to have you join us at our store !</p>
+                    <p>We are happy to have you join us at our store </p>
                     <button class="btn" id="sign-in-btn">Sign In</button>
                 </div>
-                <img src="" alt="" class="image">
             </div>
             <div class="panel right-panel">
                 <div class="content">
                     <h3>Book Store</h3>
-                    <p>Our store is happy to have you as our valued customers!</p>
+                    <p>Our store is happy to have you as our valued customers</p>
                     <button class="btn btn-danger" id="sign-up-btn" style="cursor: pointer;">Sign Up</button>
                 </div>
-                <img src="" alt="" class="image">
             </div>
         </div>
+
     </div>
 <script>
 const sign_in_btn = document.querySelector("#sign-in-btn");
@@ -123,120 +108,17 @@ sign_in_btn.addEventListener("click", () => {
     container.classList.remove("sign-up-mode");
 });
 
-// Input value function here
-var signUpForm = document.getElementById('signUpForm');
+
+let signUpForm = document.getElementById('signUpForm');
 signUpForm.addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevents the form from submitting normally
+    event.preventDefault(); 
     
-    var username = document.getElementById('username').value;
-    console.log(username);
-    
-    var useremail = document.getElementById('useremail').value;
-    console.log(useremail);
-    
-    var userpassword = document.getElementById('userpassword').value;
-    console.log(userpassword);
 });
 
-// Button disappear function here
-function isEmpty() {
-    var returnval = true;
-    clearErrors();
-    let username = document.getElementById('username').value;
-    let useremail = document.getElementById('useremail').value;
-    let userpassword = document.getElementById('userpassword').value;
-    if (((username != "" && useremail != "") && (useremail != "" && userpassword != "")) || 
-        (username != "" && userpassword != "") && (userpassword != "" && useremail != "")) {
-        document.getElementById("btn").removeAttribute("disabled");
-    }
-    return returnval;
-}
 
-// Signup form validations
-function submitFunction() {
-    var returnval = true;
-    clearErrors();
-
-    // Signup function start here
-    let name = document.forms['myForm']['fname'].value;
-    if (name.length < 3) {
-        seterror("name", "*First name should be at least three characters long!");
-        returnval = false;
-    }
-    
-    let email = document.forms['myForm']['femail'].value;
-    var ck_email = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-    if (!ck_email.test(email)) {
-        seterror("email", "*You must enter a valid email address.");
-        returnval = false;
-    } 
-    
-    let password = document.forms['myForm']['fpass'].value;
-    if (password.length < 6) {
-        seterror("password", "*Password should be at least six characters long!");
-        returnval = false;
-    }
-
-    if ((name.length > 3 && ck_email.test(email)) || (ck_email.test(email) && password.length > 6)) {
-        document.getElementById("message").innerHTML = "Hurray! Signup success. Please check your inbox to verify your email.";
-        const signup = "signup";
-        const IDOfMessage = "message";
-        document.getElementById(signup).innerHTML = document.getElementById(IDOfMessage).innerHTML;
-    }
-
-    return returnval;
-};
-
-// Signin function started here
-function validateSiginForm() {    
-    var returnval = true;
-    clearErrors();
-    
-    let userlogin = document.forms['mysigninForm']['fname'].value;
-    if (userlogin.length < 3) {
-        seterror("userlogin", "*Username should be at least three characters long!");
-        returnval = false;
-    }
-
-    let userpassword = document.forms['mysigninForm']['fpassword'].value;
-    if (userpassword.length < 6) {
-        seterror("userpassword", "*Password should be at least six characters long!");
-        returnval = false;
-    }
-    return returnval;
-}
-
-// Forgot password validation
-function validateForgotForm() {    
-    var returnval = true;
-    clearErrors();
-    
-    let Forgotemail = document.forms['forgotForm']['femail'].value;
-    var ck_email = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-    if (!ck_email.test(Forgotemail)) {
-        seterror("Forgotemail", "You must enter a valid email address.");
-        returnval = false;
-    } 
-    return returnval;
-}  
-
-// Function to clear form errors
-function clearErrors() {
-    errors = document.getElementsByClassName('formerror');
-    for (let item of errors) {
-        item.innerHTML = " ";
-    }
-}
-
-// Function to set form errors
-function seterror(id, error) {
-    //sets error inside tag of id
-    element = document.getElementById(id);
-    element.getElementsByClassName('formerror')[0].innerHTML = error;  
-}
 </script>
 
 </body>
 
 
-</html>
+{% endblock content %}

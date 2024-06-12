@@ -22,9 +22,20 @@
             <li class="nav-item">
               <a class="nav-link mx-2 text-secondary " href="{% url 'about' %}">ABOUT</a>
             </li>
-           <li class="nav-item">
-              <a class="nav-link mx-2 text-secondary" href="{% url 'account_page' %}">ACCOUNT</a>
-          </li>
+         
+{% if user.is_authenticated %}
+  <li class="nav-item">
+                 <form method="POST" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-link nav-link">LOGOUT</button>
+                </form>
+            </li>
+            {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">LOGIN/SIGN_UP</a>
+              </li>
+              
+          {% endif %}
           <li class="nav-item">
               <a style="border: 2px solid gray;border-radius: 44px;" class="nav-link mx-2 text-secondary" href="#">CONTACT</a>
             </li>

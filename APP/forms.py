@@ -1,8 +1,8 @@
 from django import forms
-
 from .models import Author, Book, Order
+from django.contrib.auth.models import User
 
-from .models import Author, Book
+
 
 
 class AuthorForm(forms.ModelForm):
@@ -46,3 +46,5 @@ class OrderForm(forms.ModelForm):
             'book': forms.Select(attrs={'class': 'form-control'}),
            
         }
+        
+
