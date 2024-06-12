@@ -1,7 +1,11 @@
 from django.db import models
 from django.core.validators import RegexValidator
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
+
+class User(AbstractUser):
+    address = models.CharField(max_length=100)
 
 
 class Category(models.Model):
@@ -12,13 +16,7 @@ class Category(models.Model):
 
 
 class Author(models.Model):
-    name = models.CharField(max_length=100, validators=[
-        RegexValidator(
-            regex='^[a-zA-Z]*$',
-            message='Name must be Alphabetic',
-            code='invalid name'
-        )
-    ])
+    name = models.CharField(max_length=100)
     birth_date = models.DateField(blank=True, null=True)
     nationality = models.CharField(max_length=50, blank=True, null=True)
     image = models.ImageField(upload_to='book_image/', blank=True, null=True)
@@ -58,12 +56,6 @@ class Order(models.Model):
     def __str__(self):
         return f"Order #{self.pk} - {self.customer_name}"
 
-class User(models.Model):
-    username = models.CharField(max_length=100)
-    email = models.EmailField(unique=True)
-    password = models.CharField(max_length=100)
-    
-def __str__(self):
-    return self.username
+
         
     

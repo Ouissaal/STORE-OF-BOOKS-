@@ -2,12 +2,11 @@ from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from .models import Author, Book, Order
 from .forms import AuthorForm, BookForm, OrderForm
-from .models import Author, Book
+from .models import Author, Book, User
 from .forms import AuthorForm, BookForm
 from django.core.paginator import Paginator
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
 
 def home(request): 
     books = Book.objects.all()
@@ -28,7 +27,7 @@ def user_book_list(request):
     paginator = Paginator(books, 8)
     page_number = request.GET.get('page', 1)
     page = paginator.page(page_number)    
-    return render(request, 'home_page.html', {'page': page, 'is_manager': False} )
+    return render(request, 'shop.html', {'page': page, 'is_manager': False} )
 
 def about(request):
     return render(request, 'about.html')
@@ -238,7 +237,6 @@ def logout_view(request):
 
 def register(request):
     if request.method == 'POST':
-        
         username = request.POST['username']
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']

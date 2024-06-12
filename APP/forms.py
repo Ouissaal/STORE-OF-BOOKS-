@@ -40,11 +40,11 @@ class BookForm(forms.ModelForm):
 class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
-        fields = ['customer_name', 'book']
+        fields = ['customer_name', 'book', 'status']
         widgets = {
             'customer_name': forms.TextInput(attrs={'class': 'form-control'}),
             'book': forms.Select(attrs={'class': 'form-control'}),
-           
+           'status': forms.Select(attrs={'class': 'form-control'}),
         }
         
 class CategoryForm(forms.ModelForm):
