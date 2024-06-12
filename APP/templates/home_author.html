@@ -17,13 +17,8 @@
                 </div>
                 {% endif %}
                 <div class="author-info">
-                    <p class="author-name">{{ author.name }}</p>
-                     {% if is_manager %}
-            <a href="{% url 'update_author' author.id %}" class="card-link btn btn-secondary mb-4">Update</a>
-            <a href="{% url 'delete_author' author.id %}" class="card-link btn btn-danger  mb-4">delete</a>
-           {% else %}
+                    <p class="author-name">{{ author.name }}</p> 
              <a href="{% url 'author_details' author.id %}" class="btn btn-outline-danger mt-2 mb-4 p-1">More Details</a>
-           {% endif%}
                 </div>
             </div>
         </div>

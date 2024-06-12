@@ -12,7 +12,6 @@ urlpatterns = [
     path('manager/create_book', views.create_book, name='create_book'),
     path('manager/update_book/<int:id>', views.update_book, name='update_book'),
     path('manager/delete_book/<int:id>', views.delete_book, name='delete_book'),
-    path('home/', views.home_author, name='home'),
     path('user/author_list', views.user_author_page, name='user_author_page'),
     path('manager/author_list', views.manager_author_page, name='manager_author_page'),
     path('manager/create_author/', views.create_author, name='create_author'),

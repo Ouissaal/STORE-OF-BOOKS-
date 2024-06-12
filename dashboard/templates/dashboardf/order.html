@@ -1,0 +1,51 @@
+{% extends 'dashboardf/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container p-5 border border-dark mt-5 mb-5">
+  <div class="row ">
+    <div class="col-md-3 d-flex flex-column align-items-start mt-5">
+      <a href="{% url 'book' %}" class="btn btn-secondary w-100 mb-2">Books</a>
+      <a href="{% url 'author' %}" class="btn btn-outline-warning w-100 mb-2">Authors</a>
+      <a href="{% url 'category' %}" class="btn btn-outline-secondary w-100 mb-2">Books_Category</a>
+      <a href="{% url 'order' %}" class="btn btn-outline-dark w-100 mb-2">Manage_Orders</a>
+      <a href="" class="btn btn-outline-light text-danger w-100 mb-2">Manage_Cart</a>
+
+
+    </div>
+    <div class="col-md-9">
+      <div class="d-flex justify-content-end mb-3">
+        <a href="{% url 'create_order' %}" class="btn btn-outline-danger"  >Add Order</a>
+      </div>
+      <table class="table table-striped text-center">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">Customer_name</th>
+            <th scope="col">Order_date</th>
+            <th scope="col">Status</th>
+            <th scope="col">Book</th>
+            <th scope="col">D/U</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+        {% for order in orders %}
+          <tr>
+            <td>{{ order.id }}</td>
+            <td>{{order.customer_name}}</td>
+            <td>{{order.order_date}}</td>
+            <td>{{ order.Status }}</td>
+            <td>{{ order.book.title }}</td>
+            <td> <a href="{% url 'order_delete' order.id %}" class="btn btn-danger">D</a> <a href="{% url 'order_update' order.id %}" class="btn btn-success">U</a></td>  
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<link rel="stylesheet" href="{% static 'dashboard.css' %}">
+
+{% endblock %}

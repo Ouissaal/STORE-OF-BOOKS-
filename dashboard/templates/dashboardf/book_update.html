@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="create text-center m-5 p-5">
+  <h1 class="text">Update the {{ book.title }}</h1>
+  <form method="POST">
+    {% csrf_token %}
+     {{ form.as_p }}
+    <button class="btn btn-warning " type="submit">Save</button>
+  </form>
+</div>
+
+<link rel="stylesheet" href="{% static 'dashboard.css' %}">
+{% endblock %}

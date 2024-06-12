@@ -14,21 +14,21 @@ def home(request):
     home_page_context = {
         'books': books,
     }
-    return render(request, 'home.html', context=home_page_context)
+    return render(request, 'home_page.html', context=home_page_context)
 
 def manager_book_list(request):
     books = Book.objects.all()
     paginator = Paginator(books, 8)
     page_number = request.GET.get('page', 1)
     page = paginator.page(page_number)    
-    return render(request, 'home.html', {'page': page, 'is_manager': True} )
+    return render(request, 'home_page.html', {'page': page, 'is_manager': True} )
 
 def user_book_list(request):
     books = Book.objects.all()
     paginator = Paginator(books, 8)
     page_number = request.GET.get('page', 1)
     page = paginator.page(page_number)    
-    return render(request, 'home.html', {'page': page, 'is_manager': False} )
+    return render(request, 'home_page.html', {'page': page, 'is_manager': False} )
 
 def about(request):
     return render(request, 'about.html')
@@ -85,10 +85,6 @@ def delete_book(request, id):
     }
     return render(request, 'delete_book.html', context=context)
 
-def home_author(request):
-   
-    return render(request, 'home_author.html', {'page': page, 'authors': authors})
-
 
 def user_author_page(request):
     authors = Author.objects.all()
@@ -128,8 +124,6 @@ def update_author(request, id):
         form = AuthorForm(instance=author)
 
     return render(request, 'manager/update_author.html', {'author': author, 'form': form})
-    
-
 
 def delete_author(request, id):
     author = Author.objects.get(id=id)
@@ -243,7 +237,6 @@ def logout_view(request):
     return render(request, 'home_page.html')
 
 def register(request):
-    print("register")
     if request.method == 'POST':
         
         username = request.POST['username']

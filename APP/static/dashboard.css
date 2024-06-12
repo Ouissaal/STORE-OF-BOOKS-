@@ -1,0 +1,23 @@
+body{
+background-color: #f0f0e8;
+}
+.text{
+font-family: 'Times New Roman', Times, serif;
+color: chocolate;
+text-decoration: underline cadetblue;
+}
+.btn{
+width: auto;
+}
+input, select{
+margin: 17px;
+box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.table{
+box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+.create{
+background-image:url(https://i.pinimg.com/564x/85/f6/21/85f62159bb1b808e263b8aed33d306cd.jpg);
+border-radius: 33px;
+}
