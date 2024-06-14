@@ -1,12 +1,11 @@
-from django.http import JsonResponse
-from django.shortcuts import render, redirect
-from .models import Author, Book, Order
+from django.http import JsonResponse, Http404
 from .forms import AuthorForm, BookForm, OrderForm
-from .models import Author, Book, User
-from .forms import AuthorForm, BookForm
+from .models import Author, Book, User, Order, Cart, CartItems
+from .forms import AuthorForm, BookForm, CartItemForm
 from django.core.paginator import Paginator
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
 
 def home(request): 
     books = Book.objects.all()
@@ -251,3 +250,47 @@ def register(request):
         else:
             return JsonResponse({'error': 'Passwords do not match'})
     return render(request, 'account_page.html')
+
+
+
+
+
+
+@login_required
+def cart_page(request):
+    try:
+        cart = Cart.objects.get(user=request.user, is_paid=False)
+    except Cart.DoesNotExist:
+        cart = None
+    
+    if cart:
+        cart_items = CartItems.objects.filter(cart=cart)
+    else:
+        cart_items = []
+    
+    context = { 
+        'cart': cart,
+        'cart_items': cart_items
+    }
+    return render(request, 'Cart_page.html', context)
+
+@login_required
+def add_to_cart(request, book_id):
+    try:
+        book = Book.objects.get(id=book_id)
+    except Book.DoesNotExist:
+        raise Http404("Book does not exist")
+    
+    try:
+        cart = Cart.objects.get(user=request.user, is_paid=False)
+    except Cart.DoesNotExist:
+        cart = Cart.objects.create(user=request.user, is_paid=False)
+    
+    try:
+        cart_item = CartItems.objects.get(cart=cart, book=book)
+        cart_item.quantity += 1
+        cart_item.save()
+    except CartItems.DoesNotExist:
+        cart_item = CartItems.objects.create(cart=cart, book=book)
+    
+    return redirect('cart_page')

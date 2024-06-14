@@ -1,11 +1,10 @@
 from django.db import models
 from django.core.validators import RegexValidator
 from django.contrib.auth.models import AbstractUser
-
 # Create your models here.
 
 class User(AbstractUser):
-    address = models.CharField(max_length=100)
+    address = models.CharField(max_length=100, default='')
 
 
 class Category(models.Model):
@@ -56,6 +55,27 @@ class Order(models.Model):
     def __str__(self):
         return f"Order #{self.pk} - {self.customer_name}"
 
+class Cart(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='carts')
+    create_at = models.TimeField(auto_now=True)
+    is_paid = models.BooleanField(default=False)
+    
+    def __str__(self):
+        return f'Cart {self.id} for {self.user.username}'
+    def total_price(self):
+        return sum(item.book.price * item.quantity for item in self.cart_items.all())
 
+    
+class CartItems(models.Model):
+    cart = models.ForeignKey(Cart, on_delete= models.CASCADE, related_name='cart_items')
+    book = models.ForeignKey(Book, on_delete=models.SET_NULL, null=True, blank=True)
+    quantity = models.PositiveIntegerField(default=1)
         
+    def __str__(self):
+        return f'{self.quantity} x {self.book.title if self.book else "Unknown Book"} in Cart {self.cart.id}'
+
+    def get_total_price(self):
+        if self.book:
+            return self.book.price * self.quantity
+        return 0
     

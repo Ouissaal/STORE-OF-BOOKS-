@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+  <table id="cart" class="table table-hover table-condensed">
+    <thead>
+      <tr>
+        <th style="width:50%">Books</th>
+        <th style="width:10%">Price</th>
+        <th style="width:8%">Quantity</th>
+        <th style="width:22%" class="text-center">total</th>
+        <th style="width:10%"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in cart_items %}
+      <tr>
+        <td data-th="Books">
+          <div class="row">
+            <div class="col-sm-2 hidden-xs">
+              <img src="{{ item.book.image.url }}" class="img-responsive" />
+            </div>
+            <div class="col-sm-10">
+              <h4 class="nomargin">{{ item.book.title }}</h4>
+            </div>
+          </div>
+        </td>
+        <td data-th="Price">${{ item.book.price }}</td>
+        <td data-th="Quantity">
+          <form method="POST" action="{% url 'update_cart_item' item.id %}">
+            {% csrf_token %}
+            <input type="hidden" name="cart_item_id" value="{{ item.id }}">
+            <input type="number" name="quantity" class="form-control text-center" value="{{ item.quantity }}">
+            <button type="submit" class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
+          </form>
+        </td>
+        <td data-th="Subtotal" class="text-center">${{ item.book.price }}</td>
+        <td class="actions" data-th="">
+          <a href="{% url 'remove_from_cart' item.id %}" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    <tfoot>
+     
+      <tr>
+        <td><a href="{% url 'book_list_user' %}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
+        <td colspan="2" class="hidden-xs"></td>
+        <td class="hidden-xs text-center"><strong> $ {{ cart.total_price }}</strong></td>
+        <td><a href="#" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a></td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+
+<style>
+body {
+  background-color: #f0f0e8;
+}
+</style>
+{% endblock %}

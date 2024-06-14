@@ -1,5 +1,5 @@
 from django import forms
-from .models import Author, Book, Order, Category
+from .models import Author, Book, Order, Category, CartItems
 
 
 
@@ -20,7 +20,6 @@ class BookForm(forms.ModelForm):
     class Meta:
         model = Book
         fields = ['title',
-                  'genre',
                   'publication_year',
                   'author',
                   'price',
@@ -28,7 +27,6 @@ class BookForm(forms.ModelForm):
                   'image',]
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control bg bg-secondary text-light ', 'style': 'width: 400px; height: 40px; margin: auto;'}),
-            'genre': forms.TextInput(attrs={'class': 'form-control bg bg-secondary text-light', 'style': 'width: 400px; height: 40px; margin: auto;'}),
             'publication_year': forms.NumberInput(attrs={'class': 'form-control bg bg-secondary text-light', 'style': 'width: 400px; height: 40px; margin: auto;'}),
             'author': forms.Select(attrs={'class': 'form-control bg bg-secondary text-light', 'style': 'width: 400px; height: 40px; margin: auto;'}),
             'price': forms.NumberInput(attrs={'class': 'form-control bg bg-secondary text-light', 'style': 'width: 400px; height: 40px; margin: auto;'}),
@@ -44,7 +42,7 @@ class OrderForm(forms.ModelForm):
         widgets = {
             'customer_name': forms.TextInput(attrs={'class': 'form-control'}),
             'book': forms.Select(attrs={'class': 'form-control'}),
-           'status': forms.Select(attrs={'class': 'form-control'}),
+            'status': forms.Select(attrs={'class': 'form-control'}),
         }
         
 class CategoryForm(forms.ModelForm):
@@ -56,4 +54,14 @@ class CategoryForm(forms.ModelForm):
             
         }
            
+class CartItemForm(forms.ModelForm):
+    class Meta:
+        model = CartItems
+        fields = ['quantity']
+        labels = {
+            'quantity': 'Quantity'
+        }
+        widgets = {
+            'quantity': forms.NumberInput(attrs={'min': 1})
+        }
 

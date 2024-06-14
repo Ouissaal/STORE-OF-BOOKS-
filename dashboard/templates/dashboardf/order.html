@@ -35,7 +35,7 @@
             <td>{{ order.id }}</td>
             <td>{{order.customer_name}}</td>
             <td>{{order.order_date}}</td>
-            <td>{{ order.Status }}</td>
+            <td>{{ order.status }}</td>
             <td>{{ order.book.title }}</td>
             <td> <a href="{% url 'order_delete' order.id %}" class="btn btn-danger">D</a> <a href="{% url 'order_update' order.id %}" class="btn btn-success">U</a></td>  
           </tr>
