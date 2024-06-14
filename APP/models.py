@@ -41,19 +41,46 @@ class Book(models.Model):
 
 class Order(models.Model):
     STATUS_CHOICES = (
-        ('Pending', 'Pending'),
-        ('Shipped', 'Shipped'),
-        ('Delivered', 'Delivered'),
+        ('pending', 'Pending'),
+        ('shipped', 'Shipped'),
+        ('delivered', 'Delivered'),
     )
 
-    customer_name = models.CharField(max_length=100)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     order_date = models.DateField(auto_now_add=True)
     status = models.CharField(
         max_length=20, choices=STATUS_CHOICES, default='Pending')
-    book = models.ForeignKey(Book, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"Order #{self.pk} - {self.customer_name}"
+        return f"Order #{self.pk} - {self.user.first_name} {self.user.last_name}"
+    
+class OrderItem(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='order_items')
+    book = models.ForeignKey(Book, on_delete=models.SET_NULL, null=True)
+    quantity = models.PositiveIntegerField(default=1)
+    
+    def __str__(self):
+        return f'{self.quantity} x {self.book.title if self.book else "Unknown Book"} in Order {self.order.id}'
+    
+    def get_total_price(self):
+        if self.book:
+            return self.book.price * self.quantity
+        return 0
+    
+    def get_book_title(self):
+        if self.book:
+            return self.book.title
+        return 'Unknown Book'
+    
+    def get_book_author(self):
+        if self.book:
+            return self.book.author
+        return 'Unknown Author'
+    
+    def get_book_price(self):
+        if self.book:
+            return self.book.price
+        return 0
 
 class Cart(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='carts')
@@ -66,7 +93,7 @@ class Cart(models.Model):
         return sum(item.book.price * item.quantity for item in self.cart_items.all())
 
     
-class CartItems(models.Model):
+class CartItem(models.Model):
     cart = models.ForeignKey(Cart, on_delete= models.CASCADE, related_name='cart_items')
     book = models.ForeignKey(Book, on_delete=models.SET_NULL, null=True, blank=True)
     quantity = models.PositiveIntegerField(default=1)

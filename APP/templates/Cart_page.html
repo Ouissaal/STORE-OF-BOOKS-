@@ -2,6 +2,7 @@
 {% load static %}
 {% block content %}
 <div class="container">
+  <h1 class="my-5">Cart</h1>
   <table id="cart" class="table table-hover table-condensed">
     <thead>
       <tr>
@@ -18,7 +19,7 @@
         <td data-th="Books">
           <div class="row">
             <div class="col-sm-2 hidden-xs">
-              <img src="{{ item.book.image.url }}" class="img-responsive" />
+              <img src="{{ item.book.image.url }}" class="img-fluid" />
             </div>
             <div class="col-sm-10">
               <h4 class="nomargin">{{ item.book.title }}</h4>
@@ -26,18 +27,19 @@
           </div>
         </td>
         <td data-th="Price">${{ item.book.price }}</td>
-        <td data-th="Quantity">
-          <form method="POST" action="{% url 'update_cart_item' item.id %}">
+         <td data-th="Quantity">
+          {{ item.quantity }}
+          {% comment %} <form method="POST" action="{% url 'update_cart_item' item.id %}">
             {% csrf_token %}
             <input type="hidden" name="cart_item_id" value="{{ item.id }}">
             <input type="number" name="quantity" class="form-control text-center" value="{{ item.quantity }}">
             <button type="submit" class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
-          </form>
+          </form> {% endcomment %}
         </td>
-        <td data-th="Subtotal" class="text-center">${{ item.book.price }}</td>
-        <td class="actions" data-th="">
+        <td data-th="Subtotal" class="text-center">${{ item.get_total_price }}</td>
+        {% comment %} <td class="actions" data-th="">
           <a href="{% url 'remove_from_cart' item.id %}" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></a>
-        </td>
+        </td> {% endcomment %}
       </tr>
       {% endfor %}
     </tbody>
@@ -47,7 +49,12 @@
         <td><a href="{% url 'book_list_user' %}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
         <td colspan="2" class="hidden-xs"></td>
         <td class="hidden-xs text-center"><strong> $ {{ cart.total_price }}</strong></td>
-        <td><a href="#" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a></td>
+        <td>
+          <form action="{% url 'checkout' %}">
+            {% csrf_token %}
+           <button href="#" type="submit" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></button>
+          </form>
+        </td>
       </tr>
     </tfoot>
   </table>

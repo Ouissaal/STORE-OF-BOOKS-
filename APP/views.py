@@ -1,6 +1,6 @@
 from django.http import JsonResponse, Http404
 from .forms import AuthorForm, BookForm, OrderForm
-from .models import Author, Book, User, Order, Cart, CartItems
+from .models import Author, Book, User, Order, Cart, CartItem, OrderItem
 from .forms import AuthorForm, BookForm, CartItemForm
 from django.core.paginator import Paginator
 from django.contrib.auth import authenticate, login, logout
@@ -35,6 +35,18 @@ def about(request):
 def book(request, id):
     book = Book.objects.get(id=id)
     booksCategory = Book.objects.filter(category=book.category).exclude(id = book.id)
+    if request.method == 'POST':
+        quantity = request.POST['qte']
+
+        cart = Cart.objects.filter(user=request.user, is_paid=False)
+        if not cart:
+            cart = Cart.objects.create(user=request.user)
+            CartItem.objects.create(cart=cart, book=book, quantity=quantity)
+        else:
+            CartItem.objects.create(cart=cart[0], book=book, quantity=quantity)
+
+        return redirect('cart_page')
+        
     context = {
         'book': book,  
         'booksCategory': booksCategory 
@@ -246,10 +258,10 @@ def register(request):
         if password1 == password2:
             user = User.objects.create_user(username=username, first_name=first_name, last_name=last_name, email=email, password=password1)
             user.save()
-            return redirect('account_page')
+            return redirect('login')
         else:
             return JsonResponse({'error': 'Passwords do not match'})
-    return render(request, 'account_page.html')
+    return render(request, 'login.html')
 
 
 
@@ -262,11 +274,13 @@ def cart_page(request):
         cart = Cart.objects.get(user=request.user, is_paid=False)
     except Cart.DoesNotExist:
         cart = None
-    
     if cart:
-        cart_items = CartItems.objects.filter(cart=cart)
+        cart_items = CartItem.objects.filter(cart=cart)
     else:
         cart_items = []
+    # print(cart_items)
+
+
     
     context = { 
         'cart': cart,
@@ -287,10 +301,35 @@ def add_to_cart(request, book_id):
         cart = Cart.objects.create(user=request.user, is_paid=False)
     
     try:
-        cart_item = CartItems.objects.get(cart=cart, book=book)
+        cart_item = CartItem.objects.get(cart=cart, book=book)
         cart_item.quantity += 1
         cart_item.save()
-    except CartItems.DoesNotExist:
-        cart_item = CartItems.objects.create(cart=cart, book=book)
+    except CartItem.DoesNotExist:
+        cart_item = CartItem.objects.create(cart=cart, book=book)
     
     return redirect('cart_page')
+
+@login_required
+def checkout(request):
+    try:
+        cart = Cart.objects.get(user=request.user, is_paid=False)
+    except Cart.DoesNotExist:
+        cart = None
+    if cart:
+        cart_items = CartItem.objects.filter(cart=cart)
+    else:
+        cart_items = []
+
+    if not cart_items:
+        return redirect('cart_page')
+    
+    order = Order.objects.create(user=request.user)
+
+    for cart_item in cart_items:
+        OrderItem.objects.create(order=order, book=cart_item.book, quantity=cart_item.quantity)
+
+    cart.is_paid = True
+    cart.save()
+
+    return redirect('book_list_user')
+

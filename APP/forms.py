@@ -1,5 +1,5 @@
 from django import forms
-from .models import Author, Book, Order, Category, CartItems
+from .models import Author, Book, Order, Category, CartItem
 
 
 
@@ -38,10 +38,9 @@ class BookForm(forms.ModelForm):
 class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
-        fields = ['customer_name', 'book', 'status']
+        fields = ['user', 'status']
         widgets = {
-            'customer_name': forms.TextInput(attrs={'class': 'form-control'}),
-            'book': forms.Select(attrs={'class': 'form-control'}),
+            'user': forms.Select(attrs={'class': 'form-control'}), 
             'status': forms.Select(attrs={'class': 'form-control'}),
         }
         
@@ -56,7 +55,7 @@ class CategoryForm(forms.ModelForm):
            
 class CartItemForm(forms.ModelForm):
     class Meta:
-        model = CartItems
+        model = CartItem
         fields = ['quantity']
         labels = {
             'quantity': 'Quantity'

@@ -21,14 +21,17 @@
                 <h5 class="">Category:{{ book.category.name }}</h5>
                <h5 class="text-warning"> {{ book.price }}$</h5>
                    <div class="row button-group mt-2 p-2">
-            <div class="col-auto">
-                <input type="number" class="form-control text-dark" style="width: 60px; border: 1px solid peru;" value="1">
-            </div>
-            <div class="col">
-                <a href="{% url 'cart_page'  %}" class="btn btn-light btn-block text-left">
-                    <i class="fa fa-shopping-cart mr-2" aria-hidden="true"></i> ADD TO CART
-                </a>
-            </div>
+            <form class="row" method="POST" >
+                {% csrf_token %}
+                <div class="col-auto">
+                    <input type="number" name="qte" class="form-control text-dark" style="width: 60px; border: 1px solid peru;" value="1">
+                </div>
+                <div class="col">
+                    <button type="submit" class="btn btn-light btn-block text-left">
+                        <i class="fa fa-shopping-cart mr-2" aria-hidden="true"></i> ADD TO CART
+                    </button>
+                </div>
+            </form>
         </div>
             </div>
         </div>
