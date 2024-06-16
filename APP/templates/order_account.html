@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+  <h1>Your Orders</h1>
+  <ul>
+    {% for order in orders %}
+      <li>
+        <a href="{% url 'order_detail' order.id %}">Order #{{ order.id }} - {{ order.created_at }} - ${{ order.total_price }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+<link rel="stylesheet"  href="{% static 'home_page.css' %}">
+{% endblock %}

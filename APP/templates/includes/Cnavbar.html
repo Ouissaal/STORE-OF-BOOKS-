@@ -22,9 +22,13 @@
             <li class="nav-item">
               <a class="nav-link mx-2 text-secondary " href="{% url 'about' %}">ABOUT</a>
             </li>
-           <li class="nav-item">
-              <a class="nav-link mx-2 text-secondary " href="{% url 'cart_page' %}">CART</a>
-            </li>
+           
+             <li class="nav-item">
+              <a class="nav-link mx-2 text-secondary "  href="{% url 'cart_page' %}">Cart </a>
+                
+             </li>
+              
+           
 {% if user.is_authenticated %}
   <li class="nav-item">
                  <form method="POST" action="{% url 'logout' %}">
@@ -39,20 +43,13 @@
               
           {% endif %}
           <li class="nav-item">
-              <a style="border: 2px solid gray;border-radius: 44px;" class="nav-link mx-2 text-secondary" href="#">CONTACT</a>
+              <a  class="nav-link mx-2 text-secondary" href="{% url 'account_page' %}">ACCOUNT PAGE</a>
             </li>
-           
-          <ul class="navbar-nav ms-auto d-none d-lg-inline-flex">
-            <li class="nav-item mx-2">
-              <a class="nav-link text-dark h5" href="" target="blank"><i class="fab fa-google-plus-square"></i></a>
+          <li class="nav-item">
+              <a style="border: 2px solid gray;border-radius: 44px;" class="nav-link mx-2 text-secondary" href="{% url 'contact' %}">CONTACT</a>
             </li>
-            <li class="nav-item mx-2">
-              <a class="nav-link text-dark h5" href="" target="blank"><i class="fab fa-twitter"></i></a>
-            </li>
-            <li class="nav-item mx-2">
-              <a class="nav-link text-dark h5" href="" target="blank"><i class="fab fa-facebook-square"></i></a>
-            </li>
-          </ul>
+
+          
           </ul>
         </div>
       </div>

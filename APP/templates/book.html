@@ -11,24 +11,25 @@
                 {% endif %}
             </div>
             <div class="col-md-6 mt-4">
-                <h4 style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;"  class="text-danger"><span class="underline">{{ book.title }}</span></h4>
+                <h4 style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;"  class="text-danger mb-3"><span class="underline">{{ book.title }}</span></h4>
             <a href="{% url 'author_details' book.id %}">
                 <h5 class="text-secondary">by {{ book.author.name }}</h5>
              </a>
-                <h5 class="">genre:{{ book.genre }}</h5>
-                 <p class="text-secondary">An enthralling tale by a skilled writer, this book, within the [genre] category, offers a timeless narrative with rich characters and profound themes. Its engaging plot and insightful commentary have garnered acclaim, making it a must-read for all. </p>
+               
+                 <p class="text-secondary mt-4">An enthralling tale by a skilled writer, this book, within the [genre] category, offers a timeless narrative with rich characters and profound themes. Its engaging plot and insightful commentary have garnered acclaim, making it a must-read for all. </p>
                 <h5 class="">P.Y:{{ book.publication_year }}</h5>
                 <h5 class="">Category:{{ book.category.name }}</h5>
                <h5 class="text-warning"> {{ book.price }}$</h5>
                    <div class="row button-group mt-2 p-2">
             <form class="row" method="POST" >
                 {% csrf_token %}
-                <div class="col-auto">
+                <div class="col-auto ">
                     <input type="number" name="qte" class="form-control text-dark" style="width: 60px; border: 1px solid peru;" value="1">
                 </div>
                 <div class="col">
-                    <button type="submit" class="btn btn-light btn-block text-left">
+                    <button id="add-to-cart-button" data-book-id="{{ book.id }}" class="btn btn-outline-secondary text-danger">
                         <i class="fa fa-shopping-cart mr-2" aria-hidden="true"></i> ADD TO CART
+
                     </button>
                 </div>
             </form>
@@ -75,5 +76,29 @@ Moreover, books serve as pillars of education, empowering individuals to expand 
 
 
 <link rel="stylesheet"  href="{% static 'home_page.css' %}">
-
+<script>
+document.getElementById('add-to-cart-button').addEventListener('click', function() {
+    var button = this;
+    var bookId = button.getAttribute('data-book-id');
+    
+    fetch(`/add-to-cart/${bookId}/`, {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': '{{ csrf_token }}',
+            'Content-Type': 'application/json'
+        },
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.message) {
+            button.textContent = data.message;
+        } else {
+            alert('Error adding book to cart: ' + data.error);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+});
+</script>
 {% endblock %}

@@ -106,3 +106,5 @@ class CartItem(models.Model):
             return self.book.price * self.quantity
         return 0
     
+class Item(models.Model):
+    cart = models.JSONField(default=dict)

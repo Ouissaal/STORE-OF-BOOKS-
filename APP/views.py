@@ -1,14 +1,15 @@
-from django.http import JsonResponse, Http404
+from django.http import JsonResponse
 from .forms import AuthorForm, BookForm, OrderForm
 from .models import Author, Book, User, Order, Cart, CartItem, OrderItem
 from .forms import AuthorForm, BookForm, CartItemForm
 from django.core.paginator import Paginator
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import JsonResponse, Http404
 
 def home(request): 
-    books = Book.objects.all()
+    books = Book.objects.filter(is_featured=True)[:4]
     home_page_context = {
         'books': books,
     }
@@ -57,13 +58,11 @@ def book(request, id):
 @login_required
 def create_book(request):
     if request.method == 'POST':
-        # code to create a book
         form = BookForm(request.POST)
         if form.is_valid():
             form.save()
             redirect('home_page')
     else:
-        # code to show the form
         form = BookForm()
     context = { 
         'form': form,
@@ -278,7 +277,7 @@ def cart_page(request):
         cart_items = CartItem.objects.filter(cart=cart)
     else:
         cart_items = []
-    # print(cart_items)
+    
 
 
     
@@ -287,27 +286,18 @@ def cart_page(request):
         'cart_items': cart_items
     }
     return render(request, 'Cart_page.html', context)
-
 @login_required
 def add_to_cart(request, book_id):
-    try:
-        book = Book.objects.get(id=book_id)
-    except Book.DoesNotExist:
-        raise Http404("Book does not exist")
+    book = get_object_or_404(Book, id=book_id)
+    cart = Cart.objects.get(user=request.user)
+    form = CartItem(request.POST)
     
-    try:
-        cart = Cart.objects.get(user=request.user, is_paid=False)
-    except Cart.DoesNotExist:
-        cart = Cart.objects.create(user=request.user, is_paid=False)
-    
-    try:
-        cart_item = CartItem.objects.get(cart=cart, book=book)
-        cart_item.quantity += 1
-        cart_item.save()
-    except CartItem.DoesNotExist:
-        cart_item = CartItem.objects.create(cart=cart, book=book)
-    
-    return redirect('cart_page')
+    if form.is_valid():
+        cd = form.cleaned_data
+        cart.add(book=book, quantity=cd['quantity'])
+        return JsonResponse({'message': 'Book added to cart successfully'})
+    else:
+        return JsonResponse({'error': 'Invalid form data'}, status=400)
 
 @login_required
 def checkout(request):
@@ -333,3 +323,37 @@ def checkout(request):
 
     return redirect('book_list_user')
 
+@login_required
+def update_cart_item(request, cart_item_id):
+    cart_item = get_object_or_404(CartItem, id=cart_item_id)
+    quantity = int(request.POST.get('quantity'))
+
+    if quantity > 0:
+        cart_item.quantity = quantity
+        cart_item.save()
+    return redirect('cart_page')
+
+
+@login_required
+def remove_from_cart(request, cart_item_id):
+    cart_item = get_object_or_404(CartItem, id=cart_item_id)
+    cart_item.delete()
+    return redirect('cart_page')
+
+
+@login_required
+def account_page(request):
+    orders = Order.objects.filter(user=request.user)
+    return render(request, 'order_account.html', {'orders': orders})
+
+
+@login_required
+def order_detail(request, order_id):
+    order = get_object_or_404(Order, id=order_id, user=request.user)
+    order_items = OrderItem.objects.filter(order=order)
+    return render(request, 'order_acc_details.html', {'order': order, 'order_items': order_items})
+
+
+@login_required
+def Contact_page(request):
+    return render(request, 'Contact_page.html')

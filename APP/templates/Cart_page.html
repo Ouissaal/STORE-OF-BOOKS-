@@ -2,67 +2,169 @@
 {% load static %}
 {% block content %}
 <div class="container">
-  <h1 class="my-5">Cart</h1>
-  <table id="cart" class="table table-hover table-condensed">
+<header>
+    <section id="hero" class="mb-5">
+        <div class="hero-container">
+            <div class="hero-logo">
+                <h1 class="font-weight-bold ">Cart Books</h1>
+            </div>
+        </div>
+    </section>
+</header>
+
+<table id="cart" class="table table-dark table-condensed">
     <thead>
-      <tr>
-        <th style="width:50%">Books</th>
-        <th style="width:10%">Price</th>
-        <th style="width:8%">Quantity</th>
-        <th style="width:22%" class="text-center">total</th>
-        <th style="width:10%"></th>
-      </tr>
+        <tr>
+            <th style="width:50%">Books</th>
+            <th style="width:10%">Price</th>
+            <th style="width:8%">Quantity</th>
+            <th style="width:22%" class="text-center">Total</th>
+            <th style="width:10%">U / D</th>
+        </tr>
     </thead>
     <tbody>
-      {% for item in cart_items %}
-      <tr>
-        <td data-th="Books">
-          <div class="row">
-            <div class="col-sm-2 hidden-xs">
-              <img src="{{ item.book.image.url }}" class="img-fluid" />
-            </div>
-            <div class="col-sm-10">
-              <h4 class="nomargin">{{ item.book.title }}</h4>
-            </div>
-          </div>
-        </td>
-        <td data-th="Price">${{ item.book.price }}</td>
-         <td data-th="Quantity">
-          {{ item.quantity }}
-          {% comment %} <form method="POST" action="{% url 'update_cart_item' item.id %}">
-            {% csrf_token %}
-            <input type="hidden" name="cart_item_id" value="{{ item.id }}">
-            <input type="number" name="quantity" class="form-control text-center" value="{{ item.quantity }}">
-            <button type="submit" class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
-          </form> {% endcomment %}
-        </td>
-        <td data-th="Subtotal" class="text-center">${{ item.get_total_price }}</td>
-        {% comment %} <td class="actions" data-th="">
-          <a href="{% url 'remove_from_cart' item.id %}" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></a>
-        </td> {% endcomment %}
-      </tr>
-      {% endfor %}
+        {% for item in cart_items %}
+        <tr class="cart-item" data-item-id="{{ item.id }}">
+            <td data-th="Books">
+                <div class="row">
+                    <div class="col-sm-2 hidden-xs">
+                        <img src="{{ item.book.image.url }}" class="img-fluid" />
+                    </div>
+                    <div class="col-sm-10">
+                        <h4 class="nomargin">{{ item.book.title }}</h4>
+                    </div>
+                </div>
+            </td>
+            <td data-th="Price">${{ item.book.price }}</td>
+            <td data-th="Quantity">
+                <input type="number" name="quantity" class="form-control text-center item-quantity" value="{{ item.quantity }}">
+            </td>
+            <td data-th="Subtotal" class="text-center">${{ item.get_total_price }}</td>
+            <td>
+                <button class="btn btn-success update-item-button">U</button>
+                <button class="btn btn-danger remove-item-button">D</button>
+            </td>
+        </tr>
+        {% endfor %}
     </tbody>
     <tfoot>
-     
-      <tr>
-        <td><a href="{% url 'book_list_user' %}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
-        <td colspan="2" class="hidden-xs"></td>
-        <td class="hidden-xs text-center"><strong> $ {{ cart.total_price }}</strong></td>
-        <td>
-          <form action="{% url 'checkout' %}">
-            {% csrf_token %}
-           <button href="#" type="submit" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></button>
-          </form>
-        </td>
-      </tr>
+        <tr>
+            <td><a href="{% url 'book_list_user' %}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
+            <td colspan="2" class="hidden-xs"></td>
+            <td class="hidden-xs text-center"><strong>$ {{ cart.total_price }}</strong></td>
+            <td>
+                <form action="{% url 'checkout' %}">
+                    {% csrf_token %}
+                    <button href="#" type="submit" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></button>
+                </form>
+            </td>
+        </tr>
     </tfoot>
-  </table>
+</table>
 </div>
 
 <style>
 body {
-  background-color: #f0f0e8;
+    background-color: #f0f0e8;
+}
+#hero {
+    display: table;
+    width: 100%;
+    height: 60vh;
+    background: url({% static 'images/hero-2.jpg' %}) top center;
+    background-size: cover;
+}
+@media (min-width: 1024px) {
+    #hero {
+        background-attachment: fixed;
+    }
+}
+section {
+    background: linear-gradient(gray, lightblue, whitesmoke);
+}
+#hero .hero-logo {
+    margin: 20px;
+    max-width: 100%;
+}
+#hero .hero-container {
+    background: linear-gradient(grey, lightblue, whitesmoke);
+    display: table-cell;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    vertical-align: middle;
+}
+#hero h1 {
+    margin: 30px 0 10px 0;
+    font-weight: bold;
+    line-height: 48px;
+    text-transform: uppercase;
+    color: rgb(255, 128, 0);
+    font-family: 'Times New Roman', Times, serif;
+}
+@media (max-width: 768px) {
+    #hero h1 {
+        font-size: 28px;
+        line-height: 36px;
+    }
 }
 </style>
+
+<script>
+document.querySelectorAll('.update-item-button').forEach(button => {
+    button.addEventListener('click', function() {
+        let cartItem = this.closest('.cart-item');
+        let cartItemId = cartItem.getAttribute('data-item-id');
+        let quantity = cartItem.querySelector('.item-quantity').value;
+
+        fetch(`/update-cart-item/${cartItemId}/`, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ quantity: quantity })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.message) {
+                alert(data.message);
+                location.reload();
+            } else {
+                alert('Error updating cart item: ' + data.error);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    });
+});
+
+document.querySelectorAll('.remove-item-button').forEach(button => {
+    button.addEventListener('click', function() {
+        let cartItem = this.closest('.cart-item');
+        let cartItemId = cartItem.getAttribute('data-item-id');
+
+        fetch(`/remove-from-cart/${cartItemId}/`, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.message) {
+                alert(data.message);
+                cartItem.remove();
+            } else {
+                alert('Error removing cart item: ' + data.error);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    });
+});
+</script>
 {% endblock %}

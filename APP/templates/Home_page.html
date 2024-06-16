@@ -30,7 +30,7 @@
         
         <div class="col-md-3 ">
             <a href="{% url 'book' book.id %}">
-                <img src="{{book.image.url}}" alt="Book 1" class="img-fluidd" style="width: 150px;">
+                <img src="{{book.image.url}}" alt="Book 1" class="img-fluidd" style="max-width: 200px;max-height: 250px;">
             </a>
              <h5 class="mt-2"> {{book.title}} </h5>
              <p class="text-secondary">{{ book.author.name }}</p>

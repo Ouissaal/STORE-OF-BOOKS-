@@ -18,7 +18,7 @@
                 <div class="book-info">
                     <h5 class="mt-2">{{ book.title }}</h5>
                     <p class="text-secondary">{{ book.author }}</p>
-                    <a href="{% url 'book' book.id %}" class="card-link btn btn-outline-danger">Read More</a>
+                    <a href="{% url 'book' book.id %}" class="card-link btn btn-outline-danger p-1 ">Read More </a>
                     {% if is_manager %}
                     <a href="{% url 'update_book' book.id %}" class="card-link btn btn-outline-primary">Update</a>
                     <a href="{% url 'delete_book' book.id %}" class="card-link btn btn-outline-danger">Delete</a>
